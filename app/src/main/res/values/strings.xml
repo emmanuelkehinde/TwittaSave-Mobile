@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TwitterSave</string>
+    <string name="tweet_url">Tweet Url</string>
+    <string name="download_video">Download Video/Gif</string>
+    <string name="filename_optional">Filename (Optional)</string>
+    <string name="tap_like">Show us some likes by tapping the \'LIKE\' Button.</string>
+    <string name="hope_like">Hope you like it.</string>
+    <string name="thank_you">Thank you for using TwitterSave</string>
+</resources>
