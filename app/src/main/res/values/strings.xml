@@ -6,4 +6,7 @@
     <string name="tap_like">Show us some likes by tapping the \'LIKE\' Button.</string>
     <string name="hope_like">Hope you like it.</string>
     <string name="thank_you">Thank you for using TwitterSave</string>
+    <string name="about_twittersave">About TwitterSave</string>
+    <string name="about">TwitterSave helps you download Twitter VIdeos and animated Gifs to your device.</string>
+    <string name="_1_copy_the_tweet_url_of_the_tweet_containing_the_video_or_animated_gif_then_paste_it_into_the_tweet_url_box_enter_the_name_you_want_it_stored_with_optional_then_tap_the_download_button_enjoy">Copy the tweet url of the tweet containing the video or animated gif. Then paste it into the tweet url box. Enter the name you want it stored with (optional). Then tap the \'Download\' button. Enjoy!!!</string>
 </resources>

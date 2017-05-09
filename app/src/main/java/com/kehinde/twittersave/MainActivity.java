@@ -15,6 +15,9 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String fname;
 
-                if (txt_tweet_url.getText().length()>0) {
+                if (txt_tweet_url.getText().length()>0 && txt_tweet_url.getText().toString().contains("twitter.com/")) {
 
                     Long id = getTweetId(txt_tweet_url.getText().toString());
 
@@ -95,7 +98,10 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         fname = String.valueOf(id);
                     }
-                    getTweet(id, fname);
+
+                    if (id !=null) {
+                        getTweet(id, fname);
+                    }
 
                 }else {
                     alertNoUrl();
@@ -108,10 +114,14 @@ public class MainActivity extends AppCompatActivity {
     private void handleSharedText(Intent intent) {
         String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         if (sharedText != null) {
-            if (sharedText.split("\\ ").length>1) {
-                txt_tweet_url.setText(sharedText.split("\\ ")[4]);
-            }else{
-                txt_tweet_url.setText(sharedText.split("\\ ")[0]);
+            try {
+                if (sharedText.split("\\ ").length > 1) {
+                    txt_tweet_url.setText(sharedText.split("\\ ")[4]);
+                } else {
+                    txt_tweet_url.setText(sharedText.split("\\ ")[0]);
+                }
+            }catch (Exception e){
+                Log.d("TAG", "handleSharedText: "+e);
             }
         }
     }
@@ -228,14 +238,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void alertNoUrl() {
-        Toast.makeText(MainActivity.this, "Enter the tweet url", Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, "Enter a correct tweet url", Toast.LENGTH_LONG).show();
     }
 
 
     private Long getTweetId(String s) {
-        String[] split = s.split("\\/");
-        String id=split[5].split("\\?")[0];
-        return Long.parseLong(id);
+        try {
+            String[] split = s.split("\\/");
+            String id = split[5].split("\\?")[0];
+            return Long.parseLong(id);
+        }catch (Exception e){
+            Log.d("TAG", "getTweetId: "+e.getLocalizedMessage());
+            alertNoUrl();
+            return null;
+        }
     }
 
     private void loadLikeDialog(){
@@ -267,5 +283,26 @@ public class MainActivity extends AppCompatActivity {
 
             sharedPreferences.edit().putString(Constant.FIRSTRUN,"no").apply();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main,menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId()==R.id.about){
+            startActivity(new Intent(this,AboutActivity.class));
+        }
+        if (item.getItemId()==R.id.web){
+            Intent urlIntent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://twittersave.net"));
+            urlIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(urlIntent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
