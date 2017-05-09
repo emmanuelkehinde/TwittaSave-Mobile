@@ -43,14 +43,14 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
-    testCompile 'junit:junit:4.12'
 
     compile('com.twitter.sdk.android:twitter:2.3.2@aar') {
         transitive = true
     }
 
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
     compile 'com.github.esafirm:RxDownloader:1.0.1'
+    testCompile 'junit:junit:4.12'
 }
