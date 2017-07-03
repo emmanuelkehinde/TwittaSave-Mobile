@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TwitterSave
 
 ## Download Twitter Videos and Gifs directly to your android device. 
@@ -11,3 +12,7 @@
 ### Link to TwitterSave Apk
 An apk for the TwitterSave is available here: https://www.dropbox.com/s/8v9evif6b8zdin3/TwitterSave.apk?dl=0
 
+=======
+# TwittaSave-Android
+Download Twitter Videos and animated Gif directly to your device.
+>>>>>>> 4b339c70258b66cb7972cc3f0969f4903d7f7536
