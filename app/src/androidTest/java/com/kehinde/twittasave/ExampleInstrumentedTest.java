@@ -1,4 +1,4 @@
-package com.kehinde.twittersave;
+package com.kehinde.twittasave;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

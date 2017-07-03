@@ -5,7 +5,7 @@
     <item
         android:id="@+id/web"
         android:orderInCategory="100"
-        android:title="TwitterSave Web"
+        android:title="TwittaSave Web"
         app:showAsAction="never"/>
 
     <item

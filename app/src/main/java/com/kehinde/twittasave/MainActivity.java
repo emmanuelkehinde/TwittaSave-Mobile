@@ -1,4 +1,4 @@
-package com.kehinde.twittersave;
+package com.kehinde.twittasave;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -10,8 +10,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -54,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_main);
 
-        sharedPreferences=this.getSharedPreferences("com.kehinde.twittersave", Context.MODE_PRIVATE);
+        sharedPreferences=this.getSharedPreferences("com.kehinde.twittasave", Context.MODE_PRIVATE);
 
         btn_download= (Button) findViewById(R.id.btn_download);
         txt_tweet_url= (TextView) findViewById(R.id.txt_tweet_url);
@@ -81,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 handleSharedText(intent); // Handle text being sent
             }
         }
-
 
 
         btn_download.setOnClickListener(new View.OnClickListener() {
@@ -272,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
 
                             Intent intent=new Intent(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse("http://play.google.com/store/apps/details?id=com.kehinde.twittersave"));
+                            intent.setData(Uri.parse("http://play.google.com/store/apps/details?id=com.kehinde.twittasave"));
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                         }
@@ -299,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this,AboutActivity.class));
         }
         if (item.getItemId()==R.id.web){
-            Intent urlIntent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://twittersave.net"));
+            Intent urlIntent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://twittasave.net"));
             urlIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(urlIntent);
         }
