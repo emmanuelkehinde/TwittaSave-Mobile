@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.kehinde.twittersave.AboutActivity">
+    tools:context="com.kehinde.twittasave.AboutActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
             android:src="@mipmap/ic_launcher"/>
 
@@ -25,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="What it does?"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
             android:layout_marginTop="20dp"
             android:textSize="16sp"
             android:textColor="#111"/>
@@ -43,6 +44,7 @@
             android:layout_height="wrap_content"
             android:text="How to use?"
             android:textSize="16sp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
             android:layout_marginTop="20dp"
             android:textColor="#111"/>
 
@@ -51,6 +53,7 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="#222"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
             android:layout_marginTop="12dp"
             android:lineSpacingExtra="6dp"
             android:text="Method 1: "/>
@@ -69,6 +72,7 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="#222"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
             android:layout_marginTop="12dp"
             android:lineSpacingExtra="6dp"
             android:text="Method 2: "/>
@@ -81,12 +85,13 @@
             android:textColor="#444"
             android:layout_marginTop="8dp"
             android:lineSpacingExtra="6dp"
-            android:text="Select 'Share Tweet via...' option from the (specific) tweet options. Then select TwitterSave app from the list of apps (The tweet url is automatically inserted into the tweet url box). Enter the name you want it stored with (optional). Then tap the 'Download' button. Enjoy!!!"/>
+            android:text="@string/select_share_tweet_via_option_from_the_specific_tweet_options_then_select_twittersave_app_from_the_list_of_apps_the_tweet_url_is_automatically_inserted_into_the_tweet_url_box_enter_the_name_you_want_it_stored_with_optional_then_tap_the_download_button_enjoy"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Developed by:"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
             android:layout_marginTop="20dp"
             android:textSize="16sp"
             android:textColor="#111"/>
@@ -100,7 +105,7 @@
             android:paddingBottom="16dp"
             android:textColor="@color/colorPrimary"
             android:lineSpacingExtra="6dp"
-            android:text="Emmanuel Kehinde"/>
+            android:text="@string/emmanuel_kehinde"/>
     </LinearLayout>
 
 </ScrollView>

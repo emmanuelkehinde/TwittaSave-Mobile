@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kehinde.twittersave">
+    package="com.kehinde.twittasave">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -8,12 +8,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/logo_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.kehinde.twittasave.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +32,9 @@
             android:name="io.fabric.ApiKey"
             android:value="b73e59c0a8ea3299fa76148739aeb97a79d1348a" />
 
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name="com.kehinde.twittasave.AboutActivity">
+
+        </activity>
     </application>
 
 </manifest>

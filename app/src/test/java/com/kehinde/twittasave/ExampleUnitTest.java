@@ -1,4 +1,4 @@
-package com.kehinde.twittersave;
+package com.kehinde.twittasave;
 
 import org.junit.Test;
 

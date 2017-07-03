@@ -1,4 +1,4 @@
-package com.kehinde.twittersave;
+package com.kehinde.twittasave;
 
 import android.Manifest;
 
@@ -9,8 +9,8 @@ import android.Manifest;
 public class Constant {
 
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
-    public static final String TWITTER_KEY = "QYaPv9WJcuWDDggISaFwqYomC";
-    public static final String TWITTER_SECRET = "mhOqMLBKtK6Z7AhEFOuHd3cFWMB9KbSbe5fUKTu1LoyHaCkPsn";
+    public static final String TWITTER_KEY = "[KEY]";
+    public static final String TWITTER_SECRET = "[SECRET]";
 
 
     // Storage Permissions
