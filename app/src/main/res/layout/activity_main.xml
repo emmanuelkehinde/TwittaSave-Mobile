@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:fillViewport="true"
-    tools:context="com.kehinde.twittasave.MainActivity">
+    tools:context="com.kehinde.twittasave.activities.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,6 +72,19 @@
             android:background="@drawable/btn_round2"
             android:layout_gravity="center_horizontal"
             android:id="@+id/btn_download"/>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:id="@+id/swt_autolisten"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginTop="8dp"
+            android:text="@string/enable_disable_autolisten"/>
     </LinearLayout>
 
 </ScrollView>

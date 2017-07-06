@@ -1,4 +1,4 @@
-package com.kehinde.twittasave;
+package com.kehinde.twittasave.activities;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -18,10 +18,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esafirm.rxdownloader.RxDownloader;
+import com.kehinde.twittasave.R;
+import com.kehinde.twittasave.receivers.AutoListenService;
+import com.kehinde.twittasave.utils.Constant;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -42,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_download;
     private TextView txt_tweet_url;
     private TextView txt_filename;
+    private Switch swt_autolisten;
 
     private SharedPreferences sharedPreferences;
 
@@ -57,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
         btn_download= (Button) findViewById(R.id.btn_download);
         txt_tweet_url= (TextView) findViewById(R.id.txt_tweet_url);
         txt_filename= (TextView) findViewById(R.id.txt_filename);
+        swt_autolisten= (Switch) findViewById(R.id.swt_autolisten);
+
+        if (getIntent().getBooleanExtra("service_on",false)){
+            swt_autolisten.setChecked(true);
+        }else swt_autolisten.setChecked(false);
+
 
         if (!storageAllowed()) {
             // We don't have permission so prompt the user
@@ -80,22 +92,28 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        //Method call to handle AutoListen feature
+        handleAutoListen();
+
 
         btn_download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String fname;
 
+                //Check if the tweet url field has text containing twitter.com/...
                 if (txt_tweet_url.getText().length()>0 && txt_tweet_url.getText().toString().contains("twitter.com/")) {
 
                     Long id = getTweetId(txt_tweet_url.getText().toString());
 
+                    //Check if filename is set. If not, set the tweet Id as the filename
                     if (txt_filename.getText().length()>0) {
                         fname = txt_filename.getText().toString().trim();
                     } else {
                         fname = String.valueOf(id);
                     }
 
+                    //Call method to get tweet
                     if (id !=null) {
                         getTweet(id, fname);
                     }
@@ -108,6 +126,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    private void handleAutoListen() {
+
+        swt_autolisten.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+                    startAutoService();
+                }
+                else {
+                    stopAutoService();
+                }
+            }
+        });
+
+    }
+
+    private void stopAutoService() {
+        this.stopService(new Intent(this,AutoListenService.class));
+    }
+
+    private void startAutoService() {
+        this.startService(new Intent(this,AutoListenService.class));
+    }
+
+
+    //Method handling pasting the tweet url into the field when Sharing the tweet url from the twitter app
     private void handleSharedText(Intent intent) {
         String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         if (sharedText != null) {
@@ -123,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void getTweet(final Long id, final String fname){
         progressDialog.show();
 
@@ -133,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void success(Result<Tweet> result) {
 
+                //Check if media is present
                 if (result.data.extendedEtities==null && result.data.entities.media==null){
                     alertNoMedia();
                 }
@@ -193,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
                     .subscribe(new Observer<String>() {
                         @Override
                         public void onCompleted() {
-                            Toast.makeText(MainActivity.this, "Download Completed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Download Complete", Toast.LENGTH_SHORT).show();
                             loadLikeDialog();
                         }
 
@@ -251,6 +299,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Shows this only the first time
     private void loadLikeDialog(){
 
         if (sharedPreferences.getString(Constant.FIRSTRUN,"").equals("")){
