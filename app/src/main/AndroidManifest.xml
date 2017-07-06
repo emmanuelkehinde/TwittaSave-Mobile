@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.kehinde.twittasave.MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,9 +32,15 @@
             android:name="io.fabric.ApiKey"
             android:value="b73e59c0a8ea3299fa76148739aeb97a79d1348a" />
 
-        <activity android:name="com.kehinde.twittasave.AboutActivity">
+        <activity android:name=".activities.AboutActivity"/>
 
-        </activity>
+        <receiver
+            android:name=".receivers.StopAutoListenReceiver"
+            android:enabled="true" />
+
+        <service
+            android:name=".receivers.AutoListenService"
+            android:exported="false"/>
     </application>
 
 </manifest>

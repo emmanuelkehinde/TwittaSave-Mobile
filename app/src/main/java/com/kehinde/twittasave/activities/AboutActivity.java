@@ -1,4 +1,4 @@
-package com.kehinde.twittasave;
+package com.kehinde.twittasave.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import com.kehinde.twittasave.R;
 
 public class AboutActivity extends AppCompatActivity {
 

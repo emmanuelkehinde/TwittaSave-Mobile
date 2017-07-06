@@ -1,4 +1,4 @@
-package com.kehinde.twittasave;
+package com.kehinde.twittasave.utils;
 
 import android.Manifest;
 
@@ -22,4 +22,8 @@ public class Constant {
 
 
     public static final String FIRSTRUN = "firstrun";
+    public static final int NOTI_IDENTIFIER = 3100;
+    public static final int REQUEST_CODE = 20;
+    public static final int AUTO_REQUEST_CODE = 30;
+
 }

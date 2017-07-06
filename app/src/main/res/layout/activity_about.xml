@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.kehinde.twittasave.AboutActivity">
+    tools:context="com.kehinde.twittasave.activities.AboutActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,6 +76,26 @@
             android:layout_marginTop="12dp"
             android:lineSpacingExtra="6dp"
             android:text="Method 2: "/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#444"
+            android:layout_marginTop="8dp"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/enable_autolisten_using_the_switch_below_the_download_button_from_the_twitter_app_simply_select_copy_link_to_tweet_option_from_the_tweet_containing_the_video_or_gif_twittasave_automatically_handles_the_download_of_the_video_or_animated_gif"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#222"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+            android:layout_marginTop="12dp"
+            android:lineSpacingExtra="6dp"
+            android:text="Method 3: "/>
 
 
         <TextView
