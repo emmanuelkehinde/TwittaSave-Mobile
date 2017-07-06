@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-# TwitterSave
+
+# TwittaSave
 
 ## Download Twitter Videos and Gifs directly to your android device. 
 
@@ -7,12 +7,15 @@
 - Copy the tweet url, paste it and tap the download button.
 
   or
-- Tap the share tweet option and select TwitterSave app, then tap the download button.
+- Enable AutoListen from the app. Then select 'Copy link to tweet' from the tweet containing the video while TwittaSave handles the download for you.
 
-### Link to TwitterSave Apk
-An apk for the TwitterSave is available here: https://www.dropbox.com/s/8v9evif6b8zdin3/TwitterSave.apk?dl=0
+  or
+- Tap the share tweet option and select TwittaSave app, then tap the download button.
 
-=======
-# TwittaSave-Android
-Download Twitter Videos and animated Gif directly to your device.
->>>>>>> 4b339c70258b66cb7972cc3f0969f4903d7f7536
+### How to Contribute
+- Fork the project & clone locally.
+- Create an upstream remote and sync your local copy before you branch.
+- Branch for each separate piece of work.
+- Do the work and write good commit messages.
+- Push to your origin repository.
+- Create a new PR (Pull Request) in GitHub.
