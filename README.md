@@ -7,6 +7,9 @@
 - Copy the tweet url, paste it and tap the download button.
 
   or
+- Enable AutoListen from the app. Then select 'Copy link to tweet' from the tweet containing the video while TwittaSave handles the download for you.
+
+  or
 - Tap the share tweet option and select TwittaSave app, then tap the download button.
 
 ### How to Contribute
