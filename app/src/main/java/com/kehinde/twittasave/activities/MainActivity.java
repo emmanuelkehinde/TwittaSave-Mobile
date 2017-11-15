@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences=this.getSharedPreferences("com.kehinde.twittasave", Context.MODE_PRIVATE);
 
-        btn_download= (Button) findViewById(R.id.btn_download);
-        txt_tweet_url= (TextView) findViewById(R.id.txt_tweet_url);
-        txt_filename= (TextView) findViewById(R.id.txt_filename);
-        swt_autolisten= (Switch) findViewById(R.id.swt_autolisten);
+        btn_download= findViewById(R.id.btn_download);
+        txt_tweet_url= findViewById(R.id.txt_tweet_url);
+        txt_filename= findViewById(R.id.txt_filename);
+        swt_autolisten= findViewById(R.id.swt_autolisten);
 
         if (getIntent().getBooleanExtra("service_on",false)){
             swt_autolisten.setChecked(true);
