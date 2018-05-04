@@ -217,10 +217,14 @@ public class MainActivity extends AppCompatActivity {
 
                     int i=0;
                     url = result.data.extendedEtities.media.get(0).videoInfo.variants.get(i).url;
-                    while (!url.endsWith(".mp4")){
-                        if(result.data.extendedEtities.media.get(0).videoInfo.variants.get(i)!=null) {
-                            url = result.data.extendedEtities.media.get(0).videoInfo.variants.get(i).url;
-                            i += 1;
+                    while (!url.contains(".mp4")){
+                        try {
+                            if (result.data.extendedEtities.media.get(0).videoInfo.variants.get(i) != null) {
+                                url = result.data.extendedEtities.media.get(0).videoInfo.variants.get(i).url;
+                                i += 1;
+                            }
+                        } catch (IndexOutOfBoundsException e) {
+                            downloadVideo(url,filename);
                         }
                     }
 
