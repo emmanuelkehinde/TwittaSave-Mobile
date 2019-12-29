@@ -5,6 +5,8 @@
 
 ## Download Twitter Videos and Gifs directly to your android device. 
 
+<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Android/master/screenshots/home.png alt="Twittasave Home" /> <img src=https://raw.githubusercontent.com/emmanuelkehinde//master/screenshots/about.png alt="Twittasave About" />
+
 ### How to use
 - Copy the tweet url, paste it and tap the download button.
 
