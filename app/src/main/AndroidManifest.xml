@@ -16,7 +16,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kehinde.twittasave">
+    package="com.emmanuelkehinde.twittasave">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -29,7 +29,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name="com.emmanuelkehinde.twittasave.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,14 +48,14 @@
             android:name="io.fabric.ApiKey"
             android:value="b73e59c0a8ea3299fa76148739aeb97a79d1348a" />
 
-        <activity android:name=".activities.AboutActivity"/>
+        <activity android:name="com.emmanuelkehinde.twittasave.activities.AboutActivity"/>
 
         <receiver
-            android:name=".receivers.StopAutoListenReceiver"
+            android:name="com.emmanuelkehinde.twittasave.receivers.StopAutoListenReceiver"
             android:enabled="true" />
 
         <service
-            android:name=".receivers.AutoListenService"
+            android:name="com.emmanuelkehinde.twittasave.receivers.AutoListenService"
             android:exported="false"/>
     </application>
 
