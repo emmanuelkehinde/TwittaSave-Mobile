@@ -22,7 +22,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:fillViewport="true"
-    tools:context="com.kehinde.twittasave.activities.MainActivity">
+    tools:context="com.emmanuelkehinde.twittasave.activities.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,6 +30,7 @@
         android:orientation="vertical"
         android:layout_gravity="center"
         android:gravity="center"
+        android:paddingBottom="16dp"
         android:id="@+id/linearLayout"
         android:focusable="true"
         android:focusableInTouchMode="true"
@@ -45,48 +46,48 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="40dp"/>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/colorPrimary"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="16dp">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:hint="@string/tweet_url"
-                android:textColorHint="@color/colorPrimary"
+                android:textSize="14sp"
                 android:id="@+id/txt_tweet_url"
                 android:inputType="textUri"/>
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/colorPrimary"
-            android:layout_marginBottom="16dp">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginBottom="24dp">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:textColorHint="@color/colorPrimary"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
                 android:hint="@string/filename_optional"
                 android:id="@+id/txt_filename"
                 />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-
-        <Button
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/download_video"
+            style="@style/Widget.MaterialComponents.Button"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:layout_margin="12dp"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textColor="@color/colorWhite"
             android:background="@drawable/btn_round2"
             android:layout_gravity="center_horizontal"
             android:id="@+id/btn_download"/>
@@ -94,13 +95,15 @@
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:id="@+id/swt_autolisten"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:textSize="14sp"
+            style="@style/TextAppearance.AppCompat.Body1"
             android:layout_marginTop="8dp"
             android:text="@string/enable_disable_autolisten"/>
     </LinearLayout>

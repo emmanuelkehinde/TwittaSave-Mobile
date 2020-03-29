@@ -22,7 +22,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:fillViewport="true"
-    tools:context="com.kehinde.twittasave.activities.MainActivity">
+    tools:context="com.emmanuelkehinde.twittasave.activities.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,48 +44,54 @@
             android:layout_marginTop="70dp"
             android:layout_marginBottom="30dp"/>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/colorPrimary"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="16dp">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
                 android:hint="@string/tweet_url"
                 android:textColorHint="@color/colorPrimary"
                 android:id="@+id/txt_tweet_url"
                 android:inputType="textUri"/>
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/colorPrimary"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_marginBottom="16dp">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
                 android:textColorHint="@color/colorPrimary"
                 android:hint="@string/filename_optional"
                 android:id="@+id/txt_filename"
                 />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
 
-        <Button
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/download_video"
+            style="@style/Widget.MaterialComponents.Button"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:layout_margin="12dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorWhite"
             android:background="@drawable/btn_round2"
             android:layout_gravity="center_horizontal"
             android:id="@+id/btn_download"/>
