@@ -29,7 +29,7 @@
         android:text="@string/thank_you"
         android:textColor="#222"
         android:padding="8dp"
-        android:textSize="22sp"/>
+        android:textSize="20sp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

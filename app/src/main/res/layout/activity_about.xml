@@ -20,7 +20,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.kehinde.twittasave.activities.AboutActivity">
+    tools:context="com.emmanuelkehinde.twittasave.activities.AboutActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
