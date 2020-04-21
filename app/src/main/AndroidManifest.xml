@@ -46,7 +46,7 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="REMOVED_SECRET" />
+            android:value=[FABRIC_KEY]"" />
 
         <activity android:name="com.emmanuelkehinde.twittasave.activities.AboutActivity"/>
 
