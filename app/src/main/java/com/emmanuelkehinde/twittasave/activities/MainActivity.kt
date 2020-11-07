@@ -238,7 +238,6 @@ class MainActivity : AppCompatActivity() {
                     .subscribe(object : Observer<String> {
                         override fun onCompleted() {
                             Toast.makeText(this@MainActivity, "Download Complete", Toast.LENGTH_SHORT).show()
-                            loadLikeDialog()
                         }
 
                         override fun onError(e: Throwable) {
@@ -282,14 +281,14 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun getTweetId(s: String): Long? {
-        try {
+        return try {
             val split = s.split("\\/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             val id = split[5].split("\\?".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]
-            return java.lang.Long.parseLong(id)
+            java.lang.Long.parseLong(id)
         } catch (e: Exception) {
             Log.d("TAG", "getTweetId: " + e.localizedMessage!!)
             alertNoUrl()
-            return null
+            null
         }
 
     }
