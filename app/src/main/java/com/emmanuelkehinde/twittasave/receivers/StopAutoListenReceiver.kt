@@ -20,7 +20,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 
-
 /**
  * Created by kehinde on 7/5/17.
  */

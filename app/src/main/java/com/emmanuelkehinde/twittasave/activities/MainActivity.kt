@@ -19,43 +19,32 @@ package com.emmanuelkehinde.twittasave.activities
 import android.Manifest
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Button
-import android.widget.CompoundButton
-import android.widget.Switch
-import android.widget.TextView
 import android.widget.Toast
-
-import com.esafirm.rxdownloader.RxDownloader
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.emmanuelkehinde.twittasave.R
 import com.emmanuelkehinde.twittasave.receivers.AutoListenService
 import com.emmanuelkehinde.twittasave.utils.Constant
+import com.esafirm.rxdownloader.RxDownloader
 import com.twitter.sdk.android.Twitter
 import com.twitter.sdk.android.core.Callback
 import com.twitter.sdk.android.core.Result
-import com.twitter.sdk.android.core.TwitterApiClient
 import com.twitter.sdk.android.core.TwitterAuthConfig
 import com.twitter.sdk.android.core.TwitterCore
 import com.twitter.sdk.android.core.TwitterException
 import com.twitter.sdk.android.core.models.Tweet
-import com.twitter.sdk.android.core.services.StatusesService
-
 import io.fabric.sdk.android.Fabric
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
 import rx.Observer
 
 class MainActivity : AppCompatActivity() {
@@ -72,7 +61,6 @@ class MainActivity : AppCompatActivity() {
         sharedPreferences = this.getSharedPreferences("com.emmanuelkehinde.twittasave", Context.MODE_PRIVATE)
         swt_autolisten?.isChecked = intent.getBooleanExtra("service_on", false)
 
-
         if (!storageAllowed()) {
             // We don't have permission so prompt the user
             ActivityCompat.requestPermissions(this, Constant.PERMISSIONS_STORAGE, Constant.REQUEST_EXTERNAL_STORAGE)
@@ -82,7 +70,6 @@ class MainActivity : AppCompatActivity() {
         progressDialog?.setMessage("Fetching tweet...")
         progressDialog?.setCancelable(false)
         progressDialog?.isIndeterminate = true
-
 
         // Get intent, action and MIME type
         val intent = intent
@@ -95,41 +82,36 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        //Method call to handle AutoListen feature
+        // Method call to handle AutoListen feature
         handleAutoListen()
-
 
         btn_download?.setOnClickListener {
             val fname: String
 
             val tweetUrl = txt_tweet_url.text.toString()
-            //Check if the tweet url field has text containing twitter.com/...
+            // Check if the tweet url field has text containing twitter.com/...
             if (tweetUrl.isNotEmpty() && tweetUrl.contains("twitter.com/")) {
 
                 val id = getTweetId(tweetUrl)
 
-                //Check if filename is set. If not, set the tweet Id as the filename
+                // Check if filename is set. If not, set the tweet Id as the filename
                 fname = if (txt_filename?.text.toString().isNotEmpty()) {
                     txt_filename?.text.toString().trim { it <= ' ' }
                 } else {
                     id.toString()
                 }
 
-                //Call method to get tweet
+                // Call method to get tweet
                 if (id != null) {
                     getTweet(id, fname)
                 }
-
             } else {
                 alertNoUrl()
             }
         }
-
     }
 
-
     private fun handleAutoListen() {
-
         swt_autolisten?.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 startAutoService()
@@ -137,7 +119,6 @@ class MainActivity : AppCompatActivity() {
                 stopAutoService()
             }
         }
-
     }
 
     private fun stopAutoService() {
@@ -148,8 +129,7 @@ class MainActivity : AppCompatActivity() {
         this.startService(Intent(this, AutoListenService::class.java))
     }
 
-
-    //Method handling pasting the tweet url into the field when Sharing the tweet url from the twitter app
+    // Method handling pasting the tweet url into the field when Sharing the tweet url from the twitter app
     private fun handleSharedText(intent: Intent) {
         val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
         if (sharedText != null) {
@@ -162,10 +142,8 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Log.d("TAG", "handleSharedText: $e")
             }
-
         }
     }
-
 
     private fun getTweet(id: Long?, fname: String) {
         progressDialog!!.show()
@@ -173,60 +151,62 @@ class MainActivity : AppCompatActivity() {
         val twitterApiClient = TwitterCore.getInstance().apiClient
         val statusesService = twitterApiClient.statusesService
         val tweetCall = statusesService.show(id, null, null, null)
-        tweetCall.enqueue(object : Callback<Tweet>() {
-            override fun success(result: Result<Tweet>) {
+        tweetCall.enqueue(
+            object : Callback<Tweet>() {
+                override fun failure(exception: TwitterException) {
+                    progressDialog!!.hide()
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Request Failed: Check your internet connection",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
-                //Check if media is present
-                if (result.data.extendedEtities == null && result.data.entities.media == null) {
-                    alertNoMedia()
-                } else if (result.data.extendedEtities.media[0].type != "video" && result.data.extendedEtities.media[0].type != "animated_gif") {
-                    alertNoVideo()
-                } else {
-                    var filename = fname
-                    var url: String
-
-                    //Set filename to gif or mp4
-                    if (result.data.extendedEtities.media[0].type == "video") {
-                        filename = "$filename.mp4"
+                override fun success(result: Result<Tweet>) {
+                    // Check if media is present
+                    if (result.data.extendedEtities == null && result.data.entities.media == null) {
+                        alertNoMedia()
+                    } else if (result.data.extendedEtities.media[0].type != "video" && result.data.extendedEtities.media[0].type != "animated_gif") {
+                        alertNoVideo()
                     } else {
-                        filename = "$filename.gif"
-                    }
+                        var filename = fname
+                        var url: String
 
-                    var i = 0
-                    url = result.data.extendedEtities.media[0].videoInfo.variants[i].url
-                    while (!url.contains(".mp4")) {
-                        try {
-                            if (result.data.extendedEtities.media[0].videoInfo.variants[i] != null) {
-                                url = result.data.extendedEtities.media[0].videoInfo.variants[i].url
-                                i += 1
-                            }
-                        } catch (e: IndexOutOfBoundsException) {
-                            downloadVideo(url, filename)
+                        // Set filename to gif or mp4
+                        if (result.data.extendedEtities.media[0].type == "video") {
+                            filename = "$filename.mp4"
+                        } else {
+                            filename = "$filename.gif"
                         }
 
-                    }
+                        var i = 0
+                        url = result.data.extendedEtities.media[0].videoInfo.variants[i].url
+                        while (!url.contains(".mp4")) {
+                            try {
+                                if (result.data.extendedEtities.media[0].videoInfo.variants[i] != null) {
+                                    url = result.data.extendedEtities.media[0].videoInfo.variants[i].url
+                                    i += 1
+                                }
+                            } catch (e: IndexOutOfBoundsException) {
+                                downloadVideo(url, filename)
+                            }
+                        }
 
-                    downloadVideo(url, filename)
-                }//Check if gif or mp4 present in the file
+                        downloadVideo(url, filename)
+                    } // Check if gif or mp4 present in the file
+                }
             }
-
-            override fun failure(exception: TwitterException) {
-                progressDialog!!.hide()
-                Toast.makeText(this@MainActivity, "Request Failed: Check your internet connection", Toast.LENGTH_SHORT).show()
-            }
-        })
+        )
     }
 
-
     private fun downloadVideo(url: String, fname: String) {
-
         if (fname.endsWith(".mp4")) {
             progressDialog!!.setMessage("Fetching video...")
         } else {
             progressDialog!!.setMessage("Fetching gif...")
         }
 
-        //Check if External Storage permission js allowed
+        // Check if External Storage permission js allowed
         if (!storageAllowed()) {
             // We don't have permission so prompt the user
             ActivityCompat.requestPermissions(this, Constant.PERMISSIONS_STORAGE, Constant.REQUEST_EXTERNAL_STORAGE)
@@ -234,8 +214,9 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Kindly grant the request and try again", Toast.LENGTH_SHORT).show()
         } else {
             RxDownloader.getInstance(this)
-                    .download(url, fname, "video/*") // url, filename, and mimeType
-                    .subscribe(object : Observer<String> {
+                .download(url, fname, "video/*") // url, filename, and mimeType
+                .subscribe(
+                    object : Observer<String> {
                         override fun onCompleted() {
                             Toast.makeText(this@MainActivity, "Download Complete", Toast.LENGTH_SHORT).show()
                         }
@@ -245,9 +226,9 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         override fun onNext(s: String) {
-
                         }
-                    })
+                    }
+                )
 
             progressDialog!!.hide()
             Toast.makeText(this, "Download Started: Check Notification", Toast.LENGTH_LONG).show()
@@ -259,7 +240,6 @@ class MainActivity : AppCompatActivity() {
             val permission = ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
             return permission == PackageManager.PERMISSION_GRANTED
-
         }
 
         return true
@@ -279,7 +259,6 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this@MainActivity, "Enter a correct tweet url", Toast.LENGTH_LONG).show()
     }
 
-
     private fun getTweetId(s: String): Long? {
         return try {
             val split = s.split("\\/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
@@ -290,24 +269,22 @@ class MainActivity : AppCompatActivity() {
             alertNoUrl()
             null
         }
-
     }
 
-    //Shows this only the first time
+    // Shows this only the first time
     private fun loadLikeDialog() {
-
         if (sharedPreferences!!.getString(Constant.FIRSTRUN, "") == "") {
 
             val builder = AlertDialog.Builder(this)
-                    .setCancelable(true)
-                    .setView(R.layout.like_layout)
-                    .setNegativeButton("Cancel") { dialogInterface, i -> dialogInterface.dismiss() }
-                    .setPositiveButton("Like") { dialogInterface, i ->
-                        val intent = Intent(Intent.ACTION_VIEW)
-                        intent.data = Uri.parse("http://play.google.com/store/apps/details?id=com.emmanuelkehinde.twittasave")
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        startActivity(intent)
-                    }
+                .setCancelable(true)
+                .setView(R.layout.like_layout)
+                .setNegativeButton("Cancel") { dialogInterface, i -> dialogInterface.dismiss() }
+                .setPositiveButton("Like") { dialogInterface, i ->
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.data = Uri.parse("http://play.google.com/store/apps/details?id=com.emmanuelkehinde.twittasave")
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                }
 
             val alertDialog = builder.create()
             alertDialog.show()
@@ -323,7 +300,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         if (item.itemId == R.id.about) {
             startActivity(Intent(this, AboutActivity::class.java))
         }
