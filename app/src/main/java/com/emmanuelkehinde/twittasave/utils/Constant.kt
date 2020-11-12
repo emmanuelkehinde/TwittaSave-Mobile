@@ -23,20 +23,15 @@ import android.Manifest
  */
 
 object Constant {
-
-    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
-    val TWITTER_KEY = "[KEY]"
-    val TWITTER_SECRET = "[SECRET]"
-
+    const val TWITTER_KEY = "[KEY]"
+    const val TWITTER_SECRET = "[SECRET]"
 
     // Storage Permissions
-    val REQUEST_EXTERNAL_STORAGE = 1
+    const val REQUEST_EXTERNAL_STORAGE = 1
     val PERMISSIONS_STORAGE = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
-
-    val FIRSTRUN = "firstrun"
-    val NOTI_IDENTIFIER = 3100
-    val REQUEST_CODE = 20
-    val AUTO_REQUEST_CODE = 30
-
+    const val FIRSTRUN = "firstrun"
+    const val NOTI_IDENTIFIER = 3100
+    const val REQUEST_CODE = 20
+    const val AUTO_REQUEST_CODE = 30
 }
