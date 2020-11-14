@@ -37,11 +37,7 @@ import com.emmanuelkehinde.twittasave.receivers.AutoListenService
 import com.emmanuelkehinde.twittasave.utils.Constant
 import com.esafirm.rxdownloader.RxDownloader
 import com.twitter.sdk.android.Twitter
-import com.twitter.sdk.android.core.Callback
-import com.twitter.sdk.android.core.Result
-import com.twitter.sdk.android.core.TwitterAuthConfig
-import com.twitter.sdk.android.core.TwitterCore
-import com.twitter.sdk.android.core.TwitterException
+import com.twitter.sdk.android.core.*
 import com.twitter.sdk.android.core.models.Tweet
 import io.fabric.sdk.android.Fabric
 import kotlinx.android.synthetic.main.activity_main.*
