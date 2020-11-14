@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id "org.jlleitschuh.gradle.ktlint" version "9.4.1"
+}
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: "org.jlleitschuh.gradle.ktlint"
 apply from: "$project.rootDir/spotless.gradle"
 
 android {
