@@ -1,5 +1,3 @@
-apply plugin: "com.diffplug.gradle.spotless"
-
 spotless {
     java {
         target 'src/*/java/**/*.java'
