@@ -64,4 +64,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
+task installGitHook(type: Copy) {
+    from new File(rootProject.rootDir, "pre-commit-hook")
+    into { new File(rootProject.rootDir, '.git/hooks') }
+    rename("pre-commit-hook", 'pre-commit')
+    fileMode 0775
+}
+
 apply plugin: 'com.google.gms.google-services'
