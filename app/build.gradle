@@ -43,7 +43,17 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
         sourceCompatibility JavaVersion.VERSION_1_7
     }
+
+    flavorDimensions "mock"
+
     productFlavors {
+        mock {
+            dimension "mock"
+            applicationIdSuffix = ".mock"
+        }
+        prod {
+            // No special config
+        }
     }
 }
 
@@ -64,6 +74,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
+apply plugin: 'com.google.gms.google-services'
+
 task installGitHook(type: Copy) {
     def suffix = "macos"
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
@@ -77,4 +89,27 @@ task installGitHook(type: Copy) {
 
 tasks.getByPath(':app:preBuild').dependsOn installGitHook
 
-apply plugin: 'com.google.gms.google-services'
+def build_param = "${build}"
+if (build_param == "devCI") {
+    // Exclude all except mockDebug flavor
+    android.variantFilter { variant ->
+        if (variant.getFlavors().get(0).name != 'mock' || variant.buildType.name != 'debug') {
+            variant.setIgnore(true)
+        }
+    }
+} else if (build_param == "releaseCI") {
+    // Exclude all except prodRelease flavor
+    android.variantFilter { variant ->
+        if (variant.getFlavors().get(0).name != 'prod' || variant.buildType.name != 'release') {
+            variant.setIgnore(true)
+        }
+    }
+} else {
+    // Normal local machine dev
+    // Exclude mockRelease as it's not needed.
+    android.variantFilter { variant ->
+        if(variant.buildType.name == 'release' && variant.getFlavors().get(0).name == 'mock') {
+            variant.setIgnore(true)
+        }
+    }
+}
