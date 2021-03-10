@@ -107,7 +107,8 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:layout_marginTop="8dp"
-            android:text="@string/enable_disable_autolisten"/>
+            android:text="@string/enable_disable_autolisten"
+            android:gravity="center_horizontal" />
     </LinearLayout>
 
 </ScrollView>
