@@ -42,7 +42,7 @@
 ##### Android
 
 - Create a new project on Twitter Developer Portal
-- Get your `consumer key` and `secret` and place them in `local.properties`.
+- Get your `consumer key` and `secret` and place them in `local.properties` as `consumer.key` and `consumer.secret` respectively.
 - Create a firebase project and generate a `google-services.json` file
 - Place your `google-services.json` file in the android app root folder
 - Build and run the app
