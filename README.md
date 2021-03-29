@@ -9,7 +9,7 @@
 
 ### Download Link
 
-#### Android - [Download the latest apk file here](https://github.com/emmanuelkehinde/TwittaSave-Android/releases/download/v3.0/twittasave-release.apk)
+#### Android - [Download the latest apk file here](https://github.com/emmanuelkehinde/TwittaSave-Mobile/releases/latest/download/twittasave-release.apk)
 
 #### iOS - Pending release
 
