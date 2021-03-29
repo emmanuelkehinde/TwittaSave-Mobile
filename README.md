@@ -5,7 +5,7 @@
 
 ## Download Twitter Videos and Gifs directly to your android or iOS device.
 
-<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Android/master/screenshots/logo.jpg alt="Twittasave Home" width=100 height=100/>
+<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/logo.png alt="Twittasave Logo" width=100 height=100/>
 
 ### [Download the latest apk file here](https://github.com/emmanuelkehinde/TwittaSave-Android/releases/download/v3.0/twittasave-release.apk)
 
@@ -13,17 +13,17 @@
 
 ### App Interface
 
-##### Android
+#### Android
 
-<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Android/master/screenshots/android/home.jpg alt="Twittasave Android Home" width=300 height=580/> <img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Android/master/screenshots/android/about.jpg alt="Twittasave Android About" width=300 height=580/>
+<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/android/home.jpg alt="Twittasave Android Home" width=300 height=580/> <img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/android/about.jpg alt="Twittasave Android About" width=300 height=580/>
 
-##### iOS
+#### iOS
 
-<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Android/master/screenshots/iOS/home.jpg alt="Twittasave iOS Home" width=300 height=580/> <img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Android/master/screenshots/iOS/about.jpg alt="Twittasave iOS About" width=300 height=580/>
+<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/iOS/home.png alt="Twittasave iOS Home" width=300 height=580/> <img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/iOS/about.png alt="Twittasave iOS About" width=300 height=580/>
 
 ### How to use
 
-##### Android
+#### Android
 
 - Copy the tweet link, paste it in the tweet link box and tap the download button.
 
@@ -33,13 +33,13 @@
   **or**
 - Tap the share tweet option and select TwittaSave app, then tap the download button.
 
-##### iOS
+#### iOS
 
 - Copy the tweet link, paste it in the tweet link box and tap the download button.
 
 ### Project Setup
 
-##### Android
+#### Android
 
 - Create a new project on Twitter Developer Portal
 - Get your `consumer key` and `secret` and place them in `local.properties` as `consumer.key` and `consumer.secret` respectively.
@@ -47,7 +47,7 @@
 - Place your `google-services.json` file in the android app root folder
 - Build and run the app
 
-##### iOS
+#### iOS
 
 - Create a new project on Twitter Developer Portal
 - Get your `consumer key` and `secret` and place them in the project's `User-Defined` `Build Settings` as `TWITTER_CONSUMER_KEY` and `TWITTER_CONSUMER_SECRET` respectively.
