@@ -25,21 +25,15 @@
 <img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/iOS/home.png alt="Twittasave iOS Home" width=250 height=500/> <img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/iOS/about.png alt="Twittasave iOS About" width=250 height=500/>
 
 ---
-### How to use
+### Tools/Resources used
 
-#### Android
-
-- Copy the tweet link, paste it in the tweet link box and tap the download button.
-
-  **or**
-- Enable AutoListen from the app. Then select 'Copy link to tweet' from the tweet containing the video while TwittaSave handles the download for you.
-
-  **or**
-- Tap the share tweet option and select TwittaSave app, then tap the download button.
-
-#### iOS
-
-- Copy the tweet link, paste it in the tweet link box and tap the download button.
+- [Ktor](https://ktor.io/)
+- [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
+- [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization) 
+- [Ktlint](https://github.com/JLLeitschuh/ktlint-gradle)
+- [Spotless](https://github.com/diffplug/spotless)
+- [Twitter API](https://developer.twitter.com/en/docs/twitter-api)
+- [Firebase](https://firebase.google.com/)
 
 ---
 ### Project Setup
