@@ -50,8 +50,8 @@ android {
         mock {
             dimension "mock"
             applicationIdSuffix = ".mock"
-            buildConfigField "String", "CONSUMER_KEY", "mock_key"
-            buildConfigField "String", "CONSUMER_SECRET", "mock_secret"
+            buildConfigField "String", "CONSUMER_KEY", "\"mock_key\""
+            buildConfigField "String", "CONSUMER_SECRET", "\"mock_secret\""
         }
         prod {
             Properties properties = new Properties()
