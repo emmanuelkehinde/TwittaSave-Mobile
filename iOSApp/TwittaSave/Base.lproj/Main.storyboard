@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="re1-aQ-yll">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--TwittaSave-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="TwittaSave" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="k7y-m4-sCF">
+                                <rect key="frame" x="16" y="273.5" width="343" height="120"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tweet Link" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1jE-7h-Ddl" customClass="RoundedTextField" customModule="TwittaSave" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="52"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="Ajg-r4-01L"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Filename (Optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Kl-uc-GkY" customClass="RoundedTextField" customModule="TwittaSave" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="68" width="343" height="52"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="R3d-go-jQX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yK-XZ-q31" customClass="RoundedButton" customModule="TwittaSave" customModuleProvider="target">
+                                <rect key="frame" x="16" y="595" width="343" height="52"/>
+                                <color key="backgroundColor" red="0.11372549019607843" green="0.63137254901960782" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="JP6-f1-dJJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                <color key="tintColor" red="0.1137254902" green="0.63137254899999995" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Download Video/GIF">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="downloadBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BeO-qM-4oe"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_launcher" translatesAutoresizingMaskIntoConstraints="NO" id="UcD-1B-089">
+                                <rect key="frame" x="91.5" y="105.5" width="192" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="F86-J8-1qM"/>
+                                    <constraint firstAttribute="width" constant="192" id="PGt-Ol-GXm"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insert the tweet link and tap the Download button" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6V-cu-mXQ">
+                                <rect key="frame" x="40" y="413.5" width="295" height="38.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="W6V-cu-mXQ" secondAttribute="trailing" constant="40" id="3F7-kP-u7d"/>
+                            <constraint firstItem="k7y-m4-sCF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="5pP-eH-lKL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="k7y-m4-sCF" secondAttribute="trailing" constant="16" id="DE7-50-Pa4"/>
+                            <constraint firstItem="W6V-cu-mXQ" firstAttribute="top" secondItem="k7y-m4-sCF" secondAttribute="bottom" constant="20" id="I9d-ar-POD"/>
+                            <constraint firstItem="k7y-m4-sCF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="RHq-Bd-xVS"/>
+                            <constraint firstItem="k7y-m4-sCF" firstAttribute="top" secondItem="UcD-1B-089" secondAttribute="bottom" constant="40" id="VS4-N0-C0i"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3yK-XZ-q31" secondAttribute="bottom" constant="20" id="h5h-7Z-Rh0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3yK-XZ-q31" secondAttribute="trailing" constant="16" id="h6X-7z-NOV"/>
+                            <constraint firstItem="UcD-1B-089" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lX2-ld-w8H"/>
+                            <constraint firstItem="W6V-cu-mXQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="qVs-0D-qdo"/>
+                            <constraint firstItem="3yK-XZ-q31" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="r0x-QC-gEV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="TwittaSave" id="zAf-9P-PmS">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="x4U-0p-Ogl">
+                            <color key="tintColor" red="0.1137254902" green="0.63137254899999995" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="About" id="XbM-xv-h0a">
+                            <color key="tintColor" red="0.1137254902" green="0.63137254899999995" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="zKS-xE-u3M" kind="show" id="8lc-55-fTL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="downloadButton" destination="3yK-XZ-q31" id="Cuo-s6-h2X"/>
+                        <outlet property="filenameTextField" destination="3Kl-uc-GkY" id="NVh-jI-J4K"/>
+                        <outlet property="tweetTextField" destination="1jE-7h-Ddl" id="SVx-b9-44o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="475.5" y="133.5"/>
+        </scene>
+        <!--About TwittaSave-->
+        <scene sceneID="4o7-ju-g0V">
+            <objects>
+                <viewController title="About TwittaSave" id="zKS-xE-u3M" customClass="AboutViewController" customModule="TwittaSave" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JgO-jh-IEX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What it does?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4J-q4-of3">
+                                <rect key="frame" x="16" y="64" width="343" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TwittaSave helps you to download Videos and animated Gifs from Tweets to your device." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gk2-63-4ex">
+                                <rect key="frame" x="16" y="103.5" width="343" height="44"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to use?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKI-aE-izV">
+                                <rect key="frame" x="16" y="163.5" width="343" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqa-ds-0Oz">
+                                <rect key="frame" x="16" y="203" width="343" height="66"/>
+                                <string key="text">Copy the link of the tweet containing the video or animated gif. Paste it into the tweet link box. Then tap the Download button. Enjoy!!!</string>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developed by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbU-BI-xKS">
+                                <rect key="frame" x="131" y="571.5" width="113" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other platforms?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZU-Pg-rao">
+                                <rect key="frame" x="16" y="285" width="343" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TwittaSave is also availble for web, android and chrome." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPd-xo-KnR">
+                                <rect key="frame" x="16" y="324.5" width="343" height="44"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bzo-Ga-Z45">
+                                <rect key="frame" x="16" y="384.5" width="343" height="36"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="https://www.twittasave.net">
+                                    <color key="titleColor" red="0.1137254902" green="0.63137254899999995" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onWebLinkPressed:" destination="zKS-xE-u3M" eventType="touchUpInside" id="dO2-iZ-t9S"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DG6-Ue-vfo">
+                                <rect key="frame" x="16" y="611" width="343" height="36"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="Emmanuel Kehinde">
+                                    <color key="titleColor" red="0.1137254902" green="0.63137254899999995" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onDeveloperPressed:" destination="zKS-xE-u3M" eventType="touchUpInside" id="Yqy-Z5-GqF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="anu-CH-Pmb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="anu-CH-Pmb" firstAttribute="trailing" secondItem="F4J-q4-of3" secondAttribute="trailing" constant="16" id="0WM-VR-2Vl"/>
+                            <constraint firstItem="Gk2-63-4ex" firstAttribute="top" secondItem="F4J-q4-of3" secondAttribute="bottom" constant="16" id="AcE-EQ-4r4"/>
+                            <constraint firstItem="DG6-Ue-vfo" firstAttribute="top" secondItem="dbU-BI-xKS" secondAttribute="bottom" constant="16" id="D3D-Rk-Ff9"/>
+                            <constraint firstItem="UKI-aE-izV" firstAttribute="top" secondItem="Gk2-63-4ex" secondAttribute="bottom" constant="16" id="Fqt-wY-JfS"/>
+                            <constraint firstItem="gPd-xo-KnR" firstAttribute="top" secondItem="XZU-Pg-rao" secondAttribute="bottom" constant="16" id="Hg8-Si-sDa"/>
+                            <constraint firstItem="qqa-ds-0Oz" firstAttribute="top" secondItem="UKI-aE-izV" secondAttribute="bottom" constant="16" id="MWK-NT-JkL"/>
+                            <constraint firstItem="F4J-q4-of3" firstAttribute="leading" secondItem="anu-CH-Pmb" secondAttribute="leading" constant="16" id="Nsi-Pc-ecH"/>
+                            <constraint firstItem="XZU-Pg-rao" firstAttribute="leading" secondItem="anu-CH-Pmb" secondAttribute="leading" constant="16" id="QOk-ym-4Y6"/>
+                            <constraint firstItem="Bzo-Ga-Z45" firstAttribute="top" secondItem="gPd-xo-KnR" secondAttribute="bottom" constant="16" id="Rzk-PD-RWP"/>
+                            <constraint firstItem="anu-CH-Pmb" firstAttribute="trailing" secondItem="UKI-aE-izV" secondAttribute="trailing" constant="16" id="SBK-l5-ldw"/>
+                            <constraint firstItem="gPd-xo-KnR" firstAttribute="leading" secondItem="anu-CH-Pmb" secondAttribute="leading" constant="16" id="Su6-Gh-ugL"/>
+                            <constraint firstItem="XZU-Pg-rao" firstAttribute="top" secondItem="qqa-ds-0Oz" secondAttribute="bottom" constant="16" id="WVw-Qa-UR8"/>
+                            <constraint firstItem="DG6-Ue-vfo" firstAttribute="leading" secondItem="anu-CH-Pmb" secondAttribute="leading" constant="16" id="XCw-qH-YAZ"/>
+                            <constraint firstItem="anu-CH-Pmb" firstAttribute="trailing" secondItem="Bzo-Ga-Z45" secondAttribute="trailing" constant="16" id="Y1B-IY-3b5"/>
+                            <constraint firstItem="UKI-aE-izV" firstAttribute="leading" secondItem="anu-CH-Pmb" secondAttribute="leading" constant="16" id="bVK-6v-XLA"/>
+                            <constraint firstItem="anu-CH-Pmb" firstAttribute="bottom" secondItem="DG6-Ue-vfo" secondAttribute="bottom" constant="20" id="e5P-G0-n6P"/>
+                            <constraint firstItem="anu-CH-Pmb" firstAttribute="trailing" secondItem="Gk2-63-4ex" secondAttribute="trailing" constant="16" id="idt-TF-mjy"/>
+                            <constraint firstItem="Gk2-63-4ex" firstAttribute="leading" secondItem="anu-CH-Pmb" secondAttribute="leading" constant="16" id="ilg-8p-Kfb"/>
+                            <constraint firstItem="anu-CH-Pmb" firstAttribute="trailing" secondItem="qqa-ds-0Oz" secondAttribute="trailing" constant="16" id="mFi-61-7dp"/>
+                            <constraint firstAttribute="trailing" secondItem="gPd-xo-KnR" secondAttribute="trailing" constant="16" id="mUS-KZ-y7D"/>
+                            <constraint firstItem="dbU-BI-xKS" firstAttribute="centerX" secondItem="JgO-jh-IEX" secondAttribute="centerX" id="pJT-7i-xKj"/>
+                            <constraint firstItem="Bzo-Ga-Z45" firstAttribute="leading" secondItem="anu-CH-Pmb" secondAttribute="leading" constant="16" id="s2r-oV-1ln"/>
+                            <constraint firstItem="F4J-q4-of3" firstAttribute="top" secondItem="anu-CH-Pmb" secondAttribute="top" constant="20" id="u68-uQ-OFa"/>
+                            <constraint firstItem="anu-CH-Pmb" firstAttribute="trailing" secondItem="DG6-Ue-vfo" secondAttribute="trailing" constant="16" id="xNj-V0-ggZ"/>
+                            <constraint firstItem="anu-CH-Pmb" firstAttribute="trailing" secondItem="XZU-Pg-rao" secondAttribute="trailing" constant="16" id="xu4-qN-Ott"/>
+                            <constraint firstItem="qqa-ds-0Oz" firstAttribute="leading" secondItem="anu-CH-Pmb" secondAttribute="leading" constant="16" id="zFf-mF-So0"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Xd-gK-2gg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1213.5999999999999" y="135.38230884557723"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rDR-Kf-S8b">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="re1-aQ-yll" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bc6-6L-wGE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="kmb-WE-IZr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4QU-3E-0gK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-351" y="134"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="1jE-7h-Ddl">
+            <size key="intrinsicContentSize" width="108" height="34"/>
+        </designable>
+        <designable name="3Kl-uc-GkY">
+            <size key="intrinsicContentSize" width="178" height="34"/>
+        </designable>
+        <designable name="3yK-XZ-q31">
+            <size key="intrinsicContentSize" width="168" height="36"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="ic_launcher" width="192" height="192"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
