@@ -5,9 +5,13 @@
 
 ## Download Twitter Videos and Gifs directly to your android or iOS device.
 
-<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/logo.png alt="Twittasave Logo" width=100 height=100/>
+<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/logo.png alt="Twittasave Logo" width=180 height=180/>
 
-### [Download the latest apk file here](https://github.com/emmanuelkehinde/TwittaSave-Android/releases/download/v3.0/twittasave-release.apk)
+### Download Link
+
+#### Android - [Download the latest apk file here](https://github.com/emmanuelkehinde/TwittaSave-Android/releases/download/v3.0/twittasave-release.apk)
+
+#### iOS - Pending release
 
 </br></br>
 
@@ -15,11 +19,11 @@
 
 #### Android
 
-<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/android/home.jpg alt="Twittasave Android Home" width=300 height=580/> <img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/android/about.jpg alt="Twittasave Android About" width=300 height=580/>
+<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/android/home.jpg alt="Twittasave Android Home" width=250 height=500/> <img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/android/about.jpg alt="Twittasave Android About" width=250 height=500/>
 
 #### iOS
 
-<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/iOS/home.png alt="Twittasave iOS Home" width=300 height=580/> <img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/iOS/about.png alt="Twittasave iOS About" width=300 height=580/>
+<img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/iOS/home.png alt="Twittasave iOS Home" width=250 height=500/> <img src=https://raw.githubusercontent.com/emmanuelkehinde/TwittaSave-Mobile/master/screenshots/iOS/about.png alt="Twittasave iOS About" width=250 height=500/>
 
 ### How to use
 
@@ -36,6 +40,8 @@
 #### iOS
 
 - Copy the tweet link, paste it in the tweet link box and tap the download button.
+
+</br></br>
 
 ### Project Setup
 
@@ -55,6 +61,8 @@
 - Place your `google-services.plist` file in the iOS app project folder
 - Build and run the app
 
+</br></br>
+
 ### How to Contribute
 - Fork the project & clone locally.
 - Create an upstream remote and sync your local copy before you branch.
@@ -62,6 +70,8 @@
 - Do the work and write good commit messages.
 - Push to your origin repository.
 - Create a new PR (Pull Request) in GitHub.
+
+</br></br>
 
 ### Love this work? Show your love :heart: by putting a :star: on this project :v:; or you can buy me a coffee <a href='https://ko-fi.com/P5P0GMV2' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
