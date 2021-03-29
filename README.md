@@ -27,6 +27,7 @@
 ---
 ### Tools/Resources used
 
+- [Kotlin Multiplatform](https://kotlinlang.org/lp/mobile/)
 - [Ktor](https://ktor.io/)
 - [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
 - [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization) 
