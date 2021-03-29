@@ -15,13 +15,14 @@
  */
 
 buildscript {
+    ext.kotlin_version = '1.4.31'
     ext.kotlin_version = '1.4.10'
     repositories {
         jcenter()
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.0-alpha16'
+        classpath 'com.android.tools.build:gradle:4.2.0-beta06'
         classpath 'com.google.gms:google-services:4.3.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.diffplug.spotless:spotless-plugin-gradle:3.27.2'
@@ -32,7 +33,6 @@ allprojects {
     repositories {
         jcenter()
         maven { url "https://jitpack.io" }
-        maven { url 'https://maven.fabric.io/public' }
         google()
     }
 }
