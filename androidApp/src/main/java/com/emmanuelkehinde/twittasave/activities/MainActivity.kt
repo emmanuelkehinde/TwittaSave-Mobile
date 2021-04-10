@@ -47,7 +47,8 @@ import com.emmanuelkehinde.twittasave.utils.EXTRA_AUTO_LISTEN_SERVICE_ON
 import com.esafirm.rxdownloader.RxDownloader
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import rx.Observer
+import io.reactivex.Observer
+import io.reactivex.disposables.Disposable
 
 class MainActivity : AppCompatActivity() {
 
@@ -154,11 +155,11 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        RxDownloader.getInstance(this)
-            .download(url, fileName, "video/*") // url, filename, and mimeType
+        RxDownloader(this)
+            .download(url, fileName, "video/*", true) // url, filename, and mimeType
             .subscribe(
                 object : Observer<String> {
-                    override fun onCompleted() {
+                    override fun onComplete() {
                         showToast("Download Complete")
                     }
 
@@ -167,6 +168,9 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onNext(s: String) {
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
                     }
                 }
             )
