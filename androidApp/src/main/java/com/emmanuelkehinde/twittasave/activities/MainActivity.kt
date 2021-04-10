@@ -22,7 +22,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -32,6 +31,7 @@ import android.widget.Switch
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
 import com.emmanuelkehinde.shared.di.CommonAndroidDIModule
 import com.emmanuelkehinde.shared.twitter.model.MediaData
 import com.emmanuelkehinde.shared.twitter.model.MediaType
@@ -47,7 +47,8 @@ import com.emmanuelkehinde.twittasave.utils.EXTRA_AUTO_LISTEN_SERVICE_ON
 import com.esafirm.rxdownloader.RxDownloader
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import rx.Observer
+import io.reactivex.Observer
+import io.reactivex.disposables.Disposable
 
 class MainActivity : AppCompatActivity() {
 
@@ -73,7 +74,11 @@ class MainActivity : AppCompatActivity() {
         autoListenSwitch.isChecked = intent.getBooleanExtra(EXTRA_AUTO_LISTEN_SERVICE_ON, false)
 
         if (!isStoragePermissionGranted()) { // Permission not granted, so prompt the user
-            ActivityCompat.requestPermissions(this, Constant.PERMISSIONS_STORAGE, Constant.REQUEST_EXTERNAL_STORAGE)
+            ActivityCompat.requestPermissions(
+                this,
+                Constant.PERMISSIONS_STORAGE,
+                Constant.REQUEST_EXTERNAL_STORAGE
+            )
         }
 
         if (intent.action == Intent.ACTION_SEND && intent.type != null && intent.type == "text/plain") {
@@ -94,7 +99,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onDownloadButtonClicked() {
-        val tweetUrl = tweetUrlEditText.text.toString() // https://twitter.com/ManUtd/status/1371250019425251328
+        val tweetUrl =
+            tweetUrlEditText.text.toString() // https://twitter.com/ManUtd/status/1371250019425251328
         if (tweetUrl.isEmpty() || !tweetUrl.contains("twitter.com/")) {
             showLongToast("Enter a valid tweet link")
             return
@@ -139,17 +145,21 @@ class MainActivity : AppCompatActivity() {
         // Check if External Storage permission is allowed
         if (!isStoragePermissionGranted()) {
             // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(this, Constant.PERMISSIONS_STORAGE, Constant.REQUEST_EXTERNAL_STORAGE)
+            ActivityCompat.requestPermissions(
+                this,
+                Constant.PERMISSIONS_STORAGE,
+                Constant.REQUEST_EXTERNAL_STORAGE
+            )
             hideProgressDialog()
             showToast("Kindly grant the request and try again")
             return
         }
 
-        RxDownloader.getInstance(this)
-            .download(url, fileName, "video/*") // url, filename, and mimeType
+        RxDownloader(this)
+            .download(url, fileName, "video/*", true) // url, filename, and mimeType
             .subscribe(
                 object : Observer<String> {
-                    override fun onCompleted() {
+                    override fun onComplete() {
                         showToast("Download Complete")
                     }
 
@@ -158,6 +168,9 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onNext(s: String) {
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
                     }
                 }
             )
@@ -171,10 +184,18 @@ class MainActivity : AppCompatActivity() {
         val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
         if (sharedText != null) {
             try {
-                if (sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray().size > 1) {
-                    tweetUrlEditText.setText(sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[4])
+                if (sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }
+                    .toTypedArray().size > 1
+                ) {
+                    tweetUrlEditText.setText(
+                        sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }
+                            .toTypedArray()[4]
+                    )
                 } else {
-                    tweetUrlEditText.setText(sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0])
+                    tweetUrlEditText.setText(
+                        sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }
+                            .toTypedArray()[0]
+                    )
                 }
             } catch (e: Exception) {
                 Log.d(this.javaClass.simpleName, "handleSharedText: $e")
@@ -192,7 +213,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun isStoragePermissionGranted(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val permission = ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            val permission = ActivityCompat.checkSelfPermission(
+                applicationContext,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
             return permission == PackageManager.PERMISSION_GRANTED
         }
 
@@ -205,19 +229,19 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val builder = AlertDialog.Builder(this)
+        AlertDialog.Builder(this)
             .setCancelable(true)
             .setView(R.layout.like_layout)
-            .setNegativeButton("Cancel") { dialogInterface, i -> dialogInterface.dismiss() }
-            .setPositiveButton("Like") { dialogInterface, i ->
+            .setNegativeButton("Cancel") { dialogInterface, _ -> dialogInterface.dismiss() }
+            .setPositiveButton("Like") { _, _ ->
                 val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse("http://play.google.com/store/apps/details?id=com.emmanuelkehinde.twittasave")
+                intent.data =
+                    "http://play.google.com/store/apps/details?id=com.emmanuelkehinde.twittasave".toUri()
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
-
-        val alertDialog = builder.create()
-        alertDialog.show()
+            .create()
+            .show()
 
         sharedPreferences.isFirstRun = false
     }
@@ -236,14 +260,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.about) {
-            startActivity(Intent(this, AboutActivity::class.java))
-        }
-        if (item.itemId == R.id.web) {
-            val urlIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://twittasave.net")).apply {
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        when (item.itemId) {
+            R.id.about -> {
+                startActivity(Intent(this, AboutActivity::class.java))
             }
-            startActivity(urlIntent)
+            R.id.web -> {
+                val urlIntent =
+                    Intent(Intent.ACTION_VIEW, "https://twittasave.net".toUri()).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
+                startActivity(urlIntent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

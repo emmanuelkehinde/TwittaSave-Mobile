@@ -12,9 +12,9 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.cancellation.CancellationException
 
 class TwitterClient(
-    private val twitterApi: TwitterApi,
-    private val twitterUtil: TwitterUtil,
-    private val coroutineContextProvider: CoroutineContextProvider
+        private val twitterApi: TwitterApi,
+        private val twitterUtil: TwitterUtil,
+        private val coroutineContextProvider: CoroutineContextProvider
 ) {
 
     @OptIn(ExperimentalStdlibApi::class)
@@ -29,7 +29,7 @@ class TwitterClient(
                 }
             } catch (e: Exception) {
                 CoroutineScope(coroutineContextProvider.main).launch {
-                    when(e) {
+                    when (e) {
                         is CancellationException -> {
                             onError(UnknownException())
                         }

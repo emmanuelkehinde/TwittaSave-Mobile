@@ -16,12 +16,7 @@
 
 package com.emmanuelkehinde.twittasave.service
 
-import android.app.IntentService
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.Service
+import android.app.*
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
@@ -36,7 +31,10 @@ import com.emmanuelkehinde.twittasave.R
 import com.emmanuelkehinde.twittasave.activities.MainActivity
 import com.emmanuelkehinde.twittasave.extensions.showToast
 import com.emmanuelkehinde.twittasave.receiver.StopAutoListenReceiver
-import com.emmanuelkehinde.twittasave.utils.*
+import com.emmanuelkehinde.twittasave.utils.EXTRA_AUTO_LISTEN_SERVICE_ON
+import com.emmanuelkehinde.twittasave.utils.NOTIFICATION_IDENTIFIER
+import com.emmanuelkehinde.twittasave.utils.OPEN_ACTIVITY_REQUEST_CODE
+import com.emmanuelkehinde.twittasave.utils.STOP_AUTO_LISTEN_REQUEST_CODE
 
 /**
  * An [IntentService] subclass for handling asynchronous task requests in
@@ -49,8 +47,10 @@ class AutoListenService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        mClipboard = applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
-        notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
+        mClipboard =
+            applicationContext.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
+        notificationManager =
+            applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
         createNotificationChannel()
         clipboardListener = ClipboardManager.OnPrimaryClipChangedListener {
             performClipboardCheck()
@@ -76,9 +76,10 @@ class AutoListenService : Service() {
             PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        val stopAutoListenIntent = Intent(applicationContext, StopAutoListenReceiver::class.java).apply {
-            this.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        }
+        val stopAutoListenIntent =
+            Intent(applicationContext, StopAutoListenReceiver::class.java).apply {
+                this.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            }
         val stopAutoListenPendingIntent = PendingIntent.getBroadcast(
             applicationContext,
             STOP_AUTO_LISTEN_REQUEST_CODE,

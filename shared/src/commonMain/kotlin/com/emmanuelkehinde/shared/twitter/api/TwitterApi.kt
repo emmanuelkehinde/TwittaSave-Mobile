@@ -24,7 +24,7 @@ class TwitterApi(private val twitterAuth: TwitterAuth, private val apiLogger: Tw
         get() = "${twitterAuth.consumerKey}:${twitterAuth.consumerSecret}".encodeBase64()
 
     private val httpClient: HttpClient
-        get() = HttpClient() {
+        get() = HttpClient {
             defaultRequest {
                 install(HttpTimeout)
                 host = HOST
@@ -37,7 +37,7 @@ class TwitterApi(private val twitterAuth: TwitterAuth, private val apiLogger: Tw
                 timeout { requestTimeoutMillis = REQUEST_TIMEOUT }
             }
             install(JsonFeature) {
-                serializer = KotlinxSerializer(kotlinx.serialization.json.Json{
+                serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
                     ignoreUnknownKeys = true
                     isLenient = true
                 })
@@ -60,8 +60,8 @@ class TwitterApi(private val twitterAuth: TwitterAuth, private val apiLogger: Tw
             kotlinx.serialization.json.Json {
                 ignoreUnknownKeys = true
             }.decodeFromString<ApiErrorResponse>(textContent)
-        }.onSuccess { parsedErrorResponse ->
-            val errorCode = parsedErrorResponse.errors?.firstOrNull()?.code
+        }.onSuccess { (errors) ->
+            val errorCode = errors?.firstOrNull()?.code
             if (errorCode != null && errorCode == ErrorCode.INVALID_TWEET_URL) {
                 throw InvalidTweetUrlException()
             }
@@ -82,10 +82,10 @@ class TwitterApi(private val twitterAuth: TwitterAuth, private val apiLogger: Tw
                 protocol = URLProtocol.HTTPS
                 path(RequestPath.STATUS)
                 arrayOf(
-                    Pair("id", tweetId),
-                    Pair("tweet_mode", "extended")
-                ).forEach { pair ->
-                    parameters.append(pair.first, pair.second)
+                        Pair("id", tweetId),
+                        Pair("tweet_mode", "extended")
+                ).forEach { (first, second) ->
+                    parameters.append(first, second)
                 }
             }
         }

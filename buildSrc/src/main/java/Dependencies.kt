@@ -4,7 +4,7 @@ object Versions {
     const val kotlinxSerialization = "1.0.0-RC"
 
     object Test {
-        const val junit = "4.13"
+        const val junit = "4.13.2"
     }
 }
 

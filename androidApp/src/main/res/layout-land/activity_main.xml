@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2017 Emmanuel Kehinde
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +15,6 @@
   -->
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,90 +23,88 @@
     tools:context="com.emmanuelkehinde.twittasave.activities.MainActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:id="@+id/linearLayout"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@mipmap/ic_launcher"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="70dp"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginBottom="30dp"
+            android:src="@mipmap/ic_launcher" />
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/colorPrimary"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:hint="@string/tweet_url"
-                android:textColorHint="@color/colorPrimary"
                 android:id="@+id/txt_tweet_url"
-                android:inputType="textUri"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/tweet_url"
+                android:inputType="textUri"
+                android:textColorHint="@color/colorPrimary"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/colorPrimary"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_filename"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColorHint="@color/colorPrimary"
                 android:hint="@string/filename_optional"
-                android:id="@+id/txt_filename"
-                />
+                android:textColorHint="@color/colorPrimary"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_download"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/download_video"
-            style="@style/Widget.MaterialComponents.Button"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/btn_round2"
             android:insetTop="0dp"
             android:insetBottom="0dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/download_video"
             android:textAllCaps="false"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/btn_round2"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/btn_download"/>
+            android:textColor="@color/colorWhite" />
 
         <Switch
+            android:id="@+id/swt_autolisten"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:id="@+id/swt_autolisten"/>
+            android:layout_marginTop="8dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
             android:text="@string/enable_disable_autolisten"
-            android:gravity="center_horizontal" />
+            android:textAlignment="center" />
     </LinearLayout>
 
 </ScrollView>

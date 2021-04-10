@@ -17,11 +17,11 @@
 package com.emmanuelkehinde.twittasave.activities
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.emmanuelkehinde.twittasave.R
 import com.emmanuelkehinde.twittasave.utils.TWITTER_PROFILE_LINK
 
@@ -39,7 +39,7 @@ class AboutActivity : AppCompatActivity() {
         }
 
         linkTextView.setOnClickListener {
-            val urlIntent = Intent(Intent.ACTION_VIEW, Uri.parse(TWITTER_PROFILE_LINK)).apply {
+            val urlIntent = Intent(Intent.ACTION_VIEW, TWITTER_PROFILE_LINK.toUri()).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             startActivity(urlIntent)

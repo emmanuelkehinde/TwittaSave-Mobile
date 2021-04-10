@@ -1,7 +1,8 @@
 package com.emmanuelkehinde.shared.twitter.api.auth
+
 import com.emmanuelkehinde.shared.twitter.credentials.TwitterCredentialsProvider
 import com.emmanuelkehinde.shared.twitter.model.BearerTokenResponse
-import io.ktor.client.HttpClient
+import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
@@ -13,7 +14,7 @@ interface TwitterAuth {
 }
 
 internal class TwitterOAuth(private val credentialsProvider: TwitterCredentialsProvider) :
-    TwitterAuth {
+        TwitterAuth {
 
     override val bearerToken: String
         get() = credentialsProvider.bearerToken

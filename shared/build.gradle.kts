@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    kotlin("plugin.serialization") version "1.3.72"
+    kotlin("plugin.serialization") version "1.4.32"
 }
 
 kotlin {
@@ -56,6 +56,7 @@ kotlin {
 
 android {
     compileSdkVersion(30)
+    buildToolsVersion("30.0.3")
     defaultConfig {
         minSdkVersion(16)
         targetSdkVersion(30)

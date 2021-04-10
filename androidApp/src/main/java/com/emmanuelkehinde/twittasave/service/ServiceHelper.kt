@@ -28,7 +28,8 @@ import com.emmanuelkehinde.twittasave.data.TwitterCredentialsDataProvider
 import com.emmanuelkehinde.twittasave.extensions.showLongToast
 import com.emmanuelkehinde.twittasave.extensions.showToast
 import com.esafirm.rxdownloader.RxDownloader
-import rx.Observer
+import io.reactivex.Observer
+import io.reactivex.disposables.Disposable
 
 /**
  * Created by kehinde on 7/5/17.
@@ -68,11 +69,11 @@ class ServiceHelper {
             return
         }
 
-        RxDownloader.getInstance(context)
-            .download(url, fileName, "video/*") // url, filename, and mimeType
+        RxDownloader(context)
+            .download(url, fileName, "video/*", true) // url, filename, and mimeType
             .subscribe(
                 object : Observer<String> {
-                    override fun onCompleted() {
+                    override fun onComplete() {
                         context.showToast("Download Complete")
                     }
 
@@ -82,6 +83,9 @@ class ServiceHelper {
 
                     override fun onNext(s: String) {
                     }
+
+                    override fun onSubscribe(d: Disposable) {
+                    }
                 }
             )
 
@@ -90,7 +94,10 @@ class ServiceHelper {
 
     private fun isStoragePermissionGranted(context: Context): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val permission = ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            val permission = ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
             return permission == PackageManager.PERMISSION_GRANTED
         }
 

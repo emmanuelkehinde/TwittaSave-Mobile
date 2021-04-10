@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2017 Emmanuel Kehinde
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,13 +19,12 @@
 
     <gradient
         android:angle="270"
-        android:startColor="@color/colorWhite"
         android:centerColor="@color/colorWhite"
-        android:endColor="@color/colorWhite"/>
+        android:endColor="@color/colorWhite"
+        android:startColor="@color/colorWhite" />
     <!--<solid-->
-        <!--android:color="@color/colorWhite"/>-->
+    <!--android:color="@color/colorWhite"/>-->
 
-    <corners
-        android:radius="24dp"/>
+    <corners android:radius="24dp" />
 
 </shape>
