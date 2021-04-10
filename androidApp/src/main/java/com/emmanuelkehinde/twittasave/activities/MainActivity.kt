@@ -22,7 +22,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -32,6 +31,7 @@ import android.widget.Switch
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
 import com.emmanuelkehinde.shared.di.CommonAndroidDIModule
 import com.emmanuelkehinde.shared.twitter.model.MediaData
 import com.emmanuelkehinde.shared.twitter.model.MediaType
@@ -232,7 +232,7 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton("Like") { _, _ ->
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.data =
-                    Uri.parse("http://play.google.com/store/apps/details?id=com.emmanuelkehinde.twittasave")
+                    "http://play.google.com/store/apps/details?id=com.emmanuelkehinde.twittasave".toUri()
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
@@ -262,7 +262,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.web -> {
                 val urlIntent =
-                    Intent(Intent.ACTION_VIEW, Uri.parse("https://twittasave.net")).apply {
+                    Intent(Intent.ACTION_VIEW, "https://twittasave.net".toUri()).apply {
                         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     }
                 startActivity(urlIntent)
