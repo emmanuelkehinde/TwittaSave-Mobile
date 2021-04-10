@@ -37,7 +37,7 @@ class TwitterApi(private val twitterAuth: TwitterAuth, private val apiLogger: Tw
                 timeout { requestTimeoutMillis = REQUEST_TIMEOUT }
             }
             install(JsonFeature) {
-                serializer = KotlinxSerializer(kotlinx.serialization.json.Json{
+                serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
                     ignoreUnknownKeys = true
                     isLenient = true
                 })
@@ -82,8 +82,8 @@ class TwitterApi(private val twitterAuth: TwitterAuth, private val apiLogger: Tw
                 protocol = URLProtocol.HTTPS
                 path(RequestPath.STATUS)
                 arrayOf(
-                    Pair("id", tweetId),
-                    Pair("tweet_mode", "extended")
+                        Pair("id", tweetId),
+                        Pair("tweet_mode", "extended")
                 ).forEach { pair ->
                     parameters.append(pair.first, pair.second)
                 }

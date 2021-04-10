@@ -16,7 +16,7 @@ class TwitterUtil {
 
         try {
             val split =
-                tweetUrl.split("\\/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                    tweetUrl.split("\\/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             return split[5].split("\\?".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]
         } catch (e: Exception) {
             throw InvalidTweetUrlException()
@@ -35,11 +35,13 @@ class TwitterUtil {
 
         val mediaEntity = tweet.extendedEntities.media.first()
         val mediaType = mediaEntity.type
-        if (mediaType == null || (mediaEntity.type != MediaType.VIDEO && mediaEntity.type != MediaType.ANIMATED_GIF)){
+        if (mediaType == null || (mediaEntity.type != MediaType.VIDEO && mediaEntity.type != MediaType.ANIMATED_GIF)) {
             throw NoVideoOrGifException()
         }
 
-        val videoVariants = mediaEntity.videoInfo?.variants?.filter { it.contentType?.contains("mp4") ?: false }
+        val videoVariants = mediaEntity.videoInfo?.variants?.filter {
+            it.contentType?.contains("mp4") ?: false
+        }
         val sortedVideoVariants = videoVariants?.sortedByDescending { it.bitrate }
 
         if (sortedVideoVariants?.isNullOrEmpty() == true) {

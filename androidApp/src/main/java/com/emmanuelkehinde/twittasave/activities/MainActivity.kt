@@ -73,7 +73,11 @@ class MainActivity : AppCompatActivity() {
         autoListenSwitch.isChecked = intent.getBooleanExtra(EXTRA_AUTO_LISTEN_SERVICE_ON, false)
 
         if (!isStoragePermissionGranted()) { // Permission not granted, so prompt the user
-            ActivityCompat.requestPermissions(this, Constant.PERMISSIONS_STORAGE, Constant.REQUEST_EXTERNAL_STORAGE)
+            ActivityCompat.requestPermissions(
+                this,
+                Constant.PERMISSIONS_STORAGE,
+                Constant.REQUEST_EXTERNAL_STORAGE
+            )
         }
 
         if (intent.action == Intent.ACTION_SEND && intent.type != null && intent.type == "text/plain") {
@@ -94,7 +98,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onDownloadButtonClicked() {
-        val tweetUrl = tweetUrlEditText.text.toString() // https://twitter.com/ManUtd/status/1371250019425251328
+        val tweetUrl =
+            tweetUrlEditText.text.toString() // https://twitter.com/ManUtd/status/1371250019425251328
         if (tweetUrl.isEmpty() || !tweetUrl.contains("twitter.com/")) {
             showLongToast("Enter a valid tweet link")
             return
@@ -139,7 +144,11 @@ class MainActivity : AppCompatActivity() {
         // Check if External Storage permission is allowed
         if (!isStoragePermissionGranted()) {
             // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(this, Constant.PERMISSIONS_STORAGE, Constant.REQUEST_EXTERNAL_STORAGE)
+            ActivityCompat.requestPermissions(
+                this,
+                Constant.PERMISSIONS_STORAGE,
+                Constant.REQUEST_EXTERNAL_STORAGE
+            )
             hideProgressDialog()
             showToast("Kindly grant the request and try again")
             return
@@ -171,10 +180,18 @@ class MainActivity : AppCompatActivity() {
         val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
         if (sharedText != null) {
             try {
-                if (sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray().size > 1) {
-                    tweetUrlEditText.setText(sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[4])
+                if (sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }
+                    .toTypedArray().size > 1
+                ) {
+                    tweetUrlEditText.setText(
+                        sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }
+                            .toTypedArray()[4]
+                    )
                 } else {
-                    tweetUrlEditText.setText(sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0])
+                    tweetUrlEditText.setText(
+                        sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }
+                            .toTypedArray()[0]
+                    )
                 }
             } catch (e: Exception) {
                 Log.d(this.javaClass.simpleName, "handleSharedText: $e")
@@ -192,7 +209,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun isStoragePermissionGranted(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val permission = ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            val permission = ActivityCompat.checkSelfPermission(
+                applicationContext,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
             return permission == PackageManager.PERMISSION_GRANTED
         }
 
@@ -211,7 +231,8 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton("Cancel") { dialogInterface, i -> dialogInterface.dismiss() }
             .setPositiveButton("Like") { dialogInterface, i ->
                 val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse("http://play.google.com/store/apps/details?id=com.emmanuelkehinde.twittasave")
+                intent.data =
+                    Uri.parse("http://play.google.com/store/apps/details?id=com.emmanuelkehinde.twittasave")
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }

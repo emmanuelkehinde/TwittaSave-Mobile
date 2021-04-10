@@ -90,7 +90,10 @@ class ServiceHelper {
 
     private fun isStoragePermissionGranted(context: Context): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val permission = ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            val permission = ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
             return permission == PackageManager.PERMISSION_GRANTED
         }
 
