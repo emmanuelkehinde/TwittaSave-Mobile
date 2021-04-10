@@ -225,20 +225,19 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val builder = AlertDialog.Builder(this)
+        AlertDialog.Builder(this)
             .setCancelable(true)
             .setView(R.layout.like_layout)
-            .setNegativeButton("Cancel") { dialogInterface, i -> dialogInterface.dismiss() }
-            .setPositiveButton("Like") { dialogInterface, i ->
+            .setNegativeButton("Cancel") { dialogInterface, _ -> dialogInterface.dismiss() }
+            .setPositiveButton("Like") { _, _ ->
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.data =
                     Uri.parse("http://play.google.com/store/apps/details?id=com.emmanuelkehinde.twittasave")
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
-
-        val alertDialog = builder.create()
-        alertDialog.show()
+            .create()
+            .show()
 
         sharedPreferences.isFirstRun = false
     }
@@ -257,14 +256,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.about) {
-            startActivity(Intent(this, AboutActivity::class.java))
-        }
-        if (item.itemId == R.id.web) {
-            val urlIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://twittasave.net")).apply {
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        when (item.itemId) {
+            R.id.about -> {
+                startActivity(Intent(this, AboutActivity::class.java))
             }
-            startActivity(urlIntent)
+            R.id.web -> {
+                val urlIntent =
+                    Intent(Intent.ACTION_VIEW, Uri.parse("https://twittasave.net")).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
+                startActivity(urlIntent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
