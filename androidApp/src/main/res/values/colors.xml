@@ -17,9 +17,10 @@
 
 <resources>
     <color name="colorPrimary">#1DA1F2</color>
-    <color name="colorPrimaryDark">#1a90d9</color>
-    <!--<color name="colorPrimaryDark">#0f8ab7</color>-->
-
+    <color name="colorPrimaryDark">#1A90D9</color>
     <color name="colorAccent">#1DA1F2</color>
-    <color name="colorWhite">#fff</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorHeaderOne">#111111</color>
+    <color name="colorBody">#444444</color>
+    <color name="colorHeaderTwo">#222222</color>
 </resources>

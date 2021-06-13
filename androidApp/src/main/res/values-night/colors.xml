@@ -15,18 +15,8 @@
   ~ limitations under the License.
   -->
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-
-    <gradient
-        android:angle="270"
-        android:startColor="@color/colorWhite"
-        android:centerColor="@color/colorWhite"
-        android:endColor="@color/colorWhite"/>
-    <!--<solid-->
-        <!--android:color="@color/colorWhite"/>-->
-
-    <corners
-        android:radius="24dp"/>
-
-</shape>
+<resources>
+    <color name="colorHeaderOne">#FFFFFF</color>
+    <color name="colorBody">#B3FFFFFF</color>
+    <color name="colorHeaderTwo">#D9FFFFFF</color>
+</resources>
