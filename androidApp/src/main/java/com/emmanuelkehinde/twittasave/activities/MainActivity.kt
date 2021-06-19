@@ -19,6 +19,7 @@ package com.emmanuelkehinde.twittasave.activities
 import android.Manifest
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -28,9 +29,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Switch
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import com.emmanuelkehinde.shared.di.CommonAndroidDIModule
 import com.emmanuelkehinde.shared.twitter.model.MediaData
@@ -38,23 +38,30 @@ import com.emmanuelkehinde.shared.twitter.model.MediaType
 import com.emmanuelkehinde.twittasave.BuildConfig
 import com.emmanuelkehinde.twittasave.R
 import com.emmanuelkehinde.twittasave.data.TwitterCredentialsDataProvider
-import com.emmanuelkehinde.twittasave.extensions.isFirstRun
+import com.emmanuelkehinde.twittasave.extensions.selectedTheme
 import com.emmanuelkehinde.twittasave.extensions.showLongToast
 import com.emmanuelkehinde.twittasave.extensions.showToast
 import com.emmanuelkehinde.twittasave.service.AutoListenService
 import com.emmanuelkehinde.twittasave.utils.Constant
 import com.emmanuelkehinde.twittasave.utils.EXTRA_AUTO_LISTEN_SERVICE_ON
 import com.esafirm.rxdownloader.RxDownloader
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
 import rx.Observer
 
 class MainActivity : AppCompatActivity() {
 
-    private val autoListenSwitch: Switch by lazy { findViewById(R.id.swt_autolisten) }
+    private val autoListenSwitch: SwitchMaterial by lazy { findViewById(R.id.swt_autolisten) }
     private val downloadButton: MaterialButton by lazy { findViewById(R.id.btn_download) }
     private val tweetUrlEditText: TextInputEditText by lazy { findViewById(R.id.txt_tweet_url) }
     private val fileNameEditText: TextInputEditText by lazy { findViewById(R.id.txt_filename) }
+    private val toolbar: MaterialToolbar by lazy { findViewById(R.id.toolbar) }
+    private val sharedPreferences: SharedPreferences by lazy {
+        getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE)
+    }
 
     private val progressDialog: ProgressDialog by lazy {
         ProgressDialog(this).apply {
@@ -63,13 +70,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val sharedPreferences: SharedPreferences by lazy {
-        getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
+
         autoListenSwitch.isChecked = intent.getBooleanExtra(EXTRA_AUTO_LISTEN_SERVICE_ON, false)
 
         if (!isStoragePermissionGranted()) { // Permission not granted, so prompt the user
@@ -168,26 +174,25 @@ class MainActivity : AppCompatActivity() {
 
     // Method handling pasting the tweet url into the field when Sharing the tweet url from the twitter app
     private fun handleSharedText(intent: Intent) {
-        val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
-        if (sharedText != null) {
-            try {
-                if (sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray().size > 1) {
-                    tweetUrlEditText.setText(sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[4])
-                } else {
-                    tweetUrlEditText.setText(sharedText.split("\\ ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0])
-                }
-            } catch (e: Exception) {
-                Log.d(this.javaClass.simpleName, "handleSharedText: $e")
+        val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT) ?: return
+
+        try {
+            if (sharedText.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray().size > 1) {
+                tweetUrlEditText.setText(sharedText.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[4])
+            } else {
+                tweetUrlEditText.setText(sharedText.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0])
             }
+        } catch (e: Exception) {
+            Log.d(javaClass.simpleName, "handleSharedText: $e")
         }
     }
 
     private fun stopAutoService() {
-        this.stopService(Intent(this, AutoListenService::class.java))
+        stopService(Intent(this, AutoListenService::class.java))
     }
 
     private fun startAutoService() {
-        this.startService(Intent(this, AutoListenService::class.java))
+        startService(Intent(this, AutoListenService::class.java))
     }
 
     private fun isStoragePermissionGranted(): Boolean {
@@ -197,29 +202,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         return true
-    }
-
-    // Shows this only the first time
-    private fun showLikeDialog() {
-        if (!sharedPreferences.isFirstRun) {
-            return
-        }
-
-        val builder = AlertDialog.Builder(this)
-            .setCancelable(true)
-            .setView(R.layout.like_layout)
-            .setNegativeButton("Cancel") { dialogInterface, i -> dialogInterface.dismiss() }
-            .setPositiveButton("Like") { dialogInterface, i ->
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse("http://play.google.com/store/apps/details?id=com.emmanuelkehinde.twittasave")
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-            }
-
-        val alertDialog = builder.create()
-        alertDialog.show()
-
-        sharedPreferences.isFirstRun = false
     }
 
     private fun showProgressDialog() {
@@ -239,12 +221,40 @@ class MainActivity : AppCompatActivity() {
         if (item.itemId == R.id.about) {
             startActivity(Intent(this, AboutActivity::class.java))
         }
+
         if (item.itemId == R.id.web) {
             val urlIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://twittasave.net")).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             startActivity(urlIntent)
         }
+
+        if (item.itemId == R.id.theme) {
+            showThemeOptionsDialog()
+        }
+
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showThemeOptionsDialog() {
+        val mapOfModeToThemes = hashMapOf(
+            AppCompatDelegate.MODE_NIGHT_YES to getString(R.string.dark),
+            AppCompatDelegate.MODE_NIGHT_NO to getString(R.string.light),
+            AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM to getString(R.string.system_default),
+        )
+
+        val themesArray = mapOfModeToThemes.values.toTypedArray()
+        val currentMode = mapOfModeToThemes[AppCompatDelegate.getDefaultNightMode()]
+        val currentModePosition = mapOfModeToThemes.values.indexOf(currentMode)
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(getString(R.string.select_theme))
+            .setSingleChoiceItems(themesArray, currentModePosition) { _: DialogInterface, position: Int ->
+                val theme = mapOfModeToThemes.keys.elementAt(position)
+                AppCompatDelegate.setDefaultNightMode(theme)
+                sharedPreferences.selectedTheme = theme
+            }
+            .create()
+            .show()
     }
 }
