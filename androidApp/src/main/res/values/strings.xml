@@ -30,4 +30,16 @@
     <string name="enable_disable_autolisten">Enable/Disable AutoListen</string>
     <string name="enable_autolisten_using_the_switch_below_the_download_button_from_the_twitter_app_simply_select_copy_link_to_tweet_option_from_the_tweet_containing_the_video_or_gif_twittasave_automatically_handles_the_download_of_the_video_or_animated_gif">Enable AutoListen using the Switch below the Download Button. From the Twitter app, simply select \'Copy link to tweet\' option from the tweet containing the video or gif. TwittaSave automatically handles the download of the video or animated gif.</string>
     <string name="general_channel">General Channel</string>
+    <string name="twittasave_web">TwittaSave Web</string>
+    <string name="change_theme">Change Theme</string>
+    <string name="select_theme">Select Theme</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+    <string name="system_default">System Default</string>
+    <string name="what_it_does">What it does?</string>
+    <string name="how_to_use">How to use?</string>
+    <string name="method_1">Method 1:</string>
+    <string name="method_2">Method 2:</string>
+    <string name="method_3">Method 3:</string>
+    <string name="developed_by">Developed by:</string>
 </resources>

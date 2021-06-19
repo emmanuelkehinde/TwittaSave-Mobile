@@ -15,98 +15,97 @@
   ~ limitations under the License.
   -->
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    android:fillViewport="true"
+    android:orientation="vertical"
     tools:context="com.emmanuelkehinde.twittasave.activities.MainActivity">
 
-    <LinearLayout
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        style="@style/TwittaSave.Toolbar" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:paddingBottom="16dp"
-        android:id="@+id/linearLayout"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@mipmap/ic_launcher"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="40dp"/>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_marginBottom="16dp">
+            android:layout_gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="40dp"
+                android:src="@mipmap/ic_launcher"
+                tools:ignore="ContentDescription" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/tweet_url"
-                android:textSize="14sp"
-                android:id="@+id/txt_tweet_url"
-                android:inputType="textUri"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginBottom="16dp">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_tweet_url"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/tweet_url"
+                    android:inputType="textUri"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_marginBottom="24dp">
-
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:hint="@string/filename_optional"
-                android:id="@+id/txt_filename"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginBottom="24dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/download_video"
-            style="@style/Widget.MaterialComponents.Button"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:textAllCaps="false"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/btn_round2"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/btn_download"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_filename"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/filename_optional"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:id="@+id/swt_autolisten"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_download"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingHorizontal="16dp"
+                android:text="@string/download_video"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            style="@style/TextAppearance.AppCompat.Body1"
-            android:layout_marginTop="8dp"
-            android:text="@string/enable_disable_autolisten"
-            android:gravity="center_horizontal" />
-    </LinearLayout>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/swt_autolisten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp" />
 
-</ScrollView>
+            <TextView
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:text="@string/enable_disable_autolisten"
+                android:textAlignment="center"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

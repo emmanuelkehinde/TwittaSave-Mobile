@@ -24,14 +24,19 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.emmanuelkehinde.twittasave.R
 import com.emmanuelkehinde.twittasave.utils.TWITTER_PROFILE_LINK
+import com.google.android.material.appbar.MaterialToolbar
 
 class AboutActivity : AppCompatActivity() {
 
     private val linkTextView: TextView by lazy { findViewById(R.id.txt_link) }
+    private val toolbar: MaterialToolbar by lazy { findViewById(R.id.toolbar) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_about)
+        setSupportActionBar(toolbar)
+
         supportActionBar?.apply {
             title = "About"
             setHomeButtonEnabled(true)

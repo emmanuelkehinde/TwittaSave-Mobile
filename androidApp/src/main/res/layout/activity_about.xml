@@ -15,133 +15,85 @@
   ~ limitations under the License.
   -->
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.emmanuelkehinde.twittasave.activities.AboutActivity">
 
-    <LinearLayout
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        style="@style/TwittaSave.Toolbar" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@mipmap/ic_launcher"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="What it does?"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-            android:layout_marginTop="20dp"
-            android:textSize="16sp"
-            android:textColor="#111"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#444"
-            android:lineSpacingExtra="6dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/about"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="How to use?"
-            android:textSize="16sp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-            android:layout_marginTop="20dp"
-            android:textColor="#111"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#222"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-            android:layout_marginTop="12dp"
-            android:lineSpacingExtra="6dp"
-            android:text="Method 1: "/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#444"
-            android:layout_marginTop="8dp"
-            android:lineSpacingExtra="6dp"
-            android:text="@string/_1_copy_the_tweet_url_of_the_tweet_containing_the_video_or_animated_gif_then_paste_it_into_the_tweet_url_box_enter_the_name_you_want_it_stored_with_optional_then_tap_the_download_button_enjoy"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#222"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-            android:layout_marginTop="12dp"
-            android:lineSpacingExtra="6dp"
-            android:text="Method 2: "/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#444"
-            android:layout_marginTop="8dp"
-            android:lineSpacingExtra="6dp"
-            android:text="@string/enable_autolisten_using_the_switch_below_the_download_button_from_the_twitter_app_simply_select_copy_link_to_tweet_option_from_the_tweet_containing_the_video_or_gif_twittasave_automatically_handles_the_download_of_the_video_or_animated_gif"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#222"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-            android:layout_marginTop="12dp"
-            android:lineSpacingExtra="6dp"
-            android:text="Method 3: "/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#444"
-            android:layout_marginTop="8dp"
-            android:lineSpacingExtra="6dp"
-            android:text="@string/select_share_tweet_via_option_from_the_specific_tweet_options_then_select_twittersave_app_from_the_list_of_apps_the_tweet_url_is_automatically_inserted_into_the_tweet_url_box_enter_the_name_you_want_it_stored_with_optional_then_tap_the_download_button_enjoy"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Developed by:"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
-            android:layout_marginTop="20dp"
-            android:textSize="16sp"
-            android:textColor="#111"/>
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:paddingTop="16dp"
-            android:id="@+id/txt_link"
-            android:paddingBottom="16dp"
-            android:textColor="@color/colorPrimary"
-            android:lineSpacingExtra="6dp"
-            android:text="@string/emmanuel_kehinde"/>
-    </LinearLayout>
+            android:orientation="vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="16dp">
 
-</ScrollView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/ic_launcher"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/TwittaSave.HeaderOne"
+                android:text="@string/what_it_does" />
+
+            <TextView
+                style="@style/TwittaSave.Body"
+                android:text="@string/about" />
+
+            <TextView
+                style="@style/TwittaSave.HeaderOne"
+                android:text="@string/how_to_use" />
+
+            <TextView
+                style="@style/TwittaSave.HeaderTwo"
+                android:text="@string/method_1" />
+
+            <TextView
+                style="@style/TwittaSave.Body"
+                android:text="@string/_1_copy_the_tweet_url_of_the_tweet_containing_the_video_or_animated_gif_then_paste_it_into_the_tweet_url_box_enter_the_name_you_want_it_stored_with_optional_then_tap_the_download_button_enjoy" />
+
+            <TextView
+                style="@style/TwittaSave.HeaderTwo"
+                android:text="@string/method_2" />
+
+            <TextView
+                style="@style/TwittaSave.Body"
+                android:text="@string/enable_autolisten_using_the_switch_below_the_download_button_from_the_twitter_app_simply_select_copy_link_to_tweet_option_from_the_tweet_containing_the_video_or_gif_twittasave_automatically_handles_the_download_of_the_video_or_animated_gif" />
+
+            <TextView
+                style="@style/TwittaSave.HeaderTwo"
+                android:text="@string/method_3" />
+
+            <TextView
+                style="@style/TwittaSave.Body"
+                android:text="@string/select_share_tweet_via_option_from_the_specific_tweet_options_then_select_twittersave_app_from_the_list_of_apps_the_tweet_url_is_automatically_inserted_into_the_tweet_url_box_enter_the_name_you_want_it_stored_with_optional_then_tap_the_download_button_enjoy" />
+
+            <TextView
+                style="@style/TwittaSave.HeaderOne"
+                android:text="@string/developed_by" />
+
+            <TextView
+                android:id="@+id/txt_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="6dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="@string/emmanuel_kehinde"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

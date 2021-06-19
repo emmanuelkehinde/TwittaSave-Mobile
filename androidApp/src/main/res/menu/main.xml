@@ -19,15 +19,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/web"
+        android:id="@+id/theme"
         android:orderInCategory="100"
-        android:title="TwittaSave Web"
-        app:showAsAction="never"/>
+        android:title="@string/change_theme"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/web"
+        android:orderInCategory="200"
+        android:title="@string/twittasave_web"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/about"
-        android:orderInCategory="200"
+        android:orderInCategory="300"
         android:title="@string/about_twittersave"
-        app:showAsAction="never"/>
-
+        app:showAsAction="never" />
 </menu>
