@@ -4,6 +4,7 @@ import com.emmanuelkehinde.shared.twitter.model.BearerTokenResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.request.*
 import io.ktor.http.*
+import io.ktor.util.*
 
 interface TwitterAuth {
     val bearerToken: String
@@ -24,6 +25,7 @@ internal class TwitterOAuth(private val credentialsProvider: TwitterCredentialsP
     override val consumerSecret: String
         get() = credentialsProvider.consumerSecret
 
+    @OptIn(InternalAPI::class)
     override suspend fun fetchBearerTokenIfEmpty(httpClient: HttpClient) {
         if (bearerToken.isNotEmpty()) {
             return

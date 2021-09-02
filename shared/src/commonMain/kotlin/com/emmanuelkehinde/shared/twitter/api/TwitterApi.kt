@@ -76,6 +76,7 @@ class TwitterApi(private val twitterAuth: TwitterAuth, private val apiLogger: Tw
         return fetchSingleTweet(tweetId)
     }
 
+    @OptIn(InternalAPI::class)
     private suspend fun fetchSingleTweet(tweetId: String): Tweet {
         return httpClient.get {
             url {

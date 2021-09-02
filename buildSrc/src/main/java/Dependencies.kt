@@ -1,6 +1,6 @@
 object Versions {
-    const val ktor = "1.4.2"
-    const val coroutines = "1.4.2-native-mt"
+    const val ktor = "1.6.2-native-mm-eap-196"
+    const val coroutines = "1.5.1-new-mm-dev2"
     const val kotlinxSerialization = "1.0.0-RC"
 
     object Test {
