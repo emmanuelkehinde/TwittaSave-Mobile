@@ -18,7 +18,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id "org.jlleitschuh.gradle.ktlint" version "9.4.1"
+    id "org.jlleitschuh.gradle.ktlint" version "10.1.0"
     id "com.diffplug.gradle.spotless"
 }
 
@@ -40,8 +40,8 @@ android {
         }
     }
     compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_7
-        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
 
     flavorDimensions "mock"
