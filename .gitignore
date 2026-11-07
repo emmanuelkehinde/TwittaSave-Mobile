@@ -12,3 +12,8 @@ androidApp/google-services.json
 androidApp/release
 buildSrc/build
 shared/build
+
+# Secrets
+.env
+.env.*
+!.env.example
